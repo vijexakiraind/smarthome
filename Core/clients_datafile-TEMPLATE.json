@@ -1,0 +1,25 @@
+# List of things (max 4) 
+# JSON format
+# Array with max 4 JSON objects
+[
+    {
+        "mac": "ac:5f:3e:26:eb:00",
+        "name": "test1",
+        "description": "test 1 description"
+    },
+    {
+        "mac": "ac:5f:3e:26:eb:01",
+        "name": "test2",
+        "description": "test 2 description"
+    },
+    {
+        "mac": "ac:5f:3e:26:eb:02",
+        "name": "test3",
+        "description": "test 3 description"
+    },
+    {
+        "mac": "ac:5f:3e:26:eb:1c",
+        "name": "lamp",
+        "description": "Super good wireless lamp"
+    }
+]

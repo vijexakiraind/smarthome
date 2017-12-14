@@ -1,20 +1,13 @@
 print("App running")
 
 -- parsing clients datafile
-clients_data = {{},{},{},{}} -- max 4 clients
-if file.open("clients_datafile.txt", "r") then
+clients_data = {} -- max 4 clients
+if file.open("clients_datafile.json", "r") then
     local raw_data = file.read()
     file.close()
-    -- cutting first two strings
-    raw_data = string.sub(raw_data, string.match(raw_data, ".-\n.-\n"):len()+1, raw_data:len())
-    local i = 1
-    while (raw_data:len()>0) do 
-        clients_data[i]["mac"] = string.match(raw_data, "$(.-)%s")
-        clients_data[i]["name"] = string.match(raw_data, "#(.-)%s")
-        clients_data[i]["description"] = string.match(raw_data, "@(.-)\n")
-        raw_data = string.sub(raw_data, string.match(raw_data, ".-\n"):len()+1, raw_data:len())
-        i = i + 1
-    end
+    -- cutting comments
+    raw_data = string.sub(raw_data, string.match(raw_data, "(#.-)%["):len()+1, raw_data:len())
+    clients_data = sjson.decode(raw_data)
 end
 
 clients_online = {{},{},{},{}} -- max 4 clients

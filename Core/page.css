@@ -101,10 +101,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 300px;
-    position: absolute;
-    top: 30px;
-    width: 280px;
+    height: 253px;
 }
 
 .icon-power {

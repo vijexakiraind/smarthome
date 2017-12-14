@@ -18,15 +18,20 @@ body {
 .client {
     background-color: white;
     box-shadow: 0 0 10px #c5c5c5;
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
     margin-bottom: 15px;
     border-radius: 3px;
+    padding: 10px;
 }
 
 .client.empty {
     box-shadow: none;
     background-color: #dcdcdc;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media (max-width: 1250px) {
@@ -44,4 +49,25 @@ body {
         width: 100%;
         margin-right: 0;
     }
+}
+
+.empty-client-placeholder {
+    text-align: center;
+}
+
+.empty-client-placeholder-title {
+    font-size: 29px;
+    font-weight: 600;
+    color: #737373;
+    margin-bottom: 2px;
+}
+
+.empty-client-placeholder-ui a {
+    color: #387ee5;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.empty-client-placeholder-ui a:hover {
+    text-decoration: underline;
 }

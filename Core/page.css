@@ -53,6 +53,7 @@ body {
 
 .empty-client-placeholder {
     text-align: center;
+    user-select: none;
 }
 
 .empty-client-placeholder-title {
@@ -70,4 +71,28 @@ body {
 
 .empty-client-placeholder-ui a:hover {
     text-decoration: underline;
+}
+
+
+.client-header {
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.client-title {
+    margin: 0 5px;
+    font-size: 22px;
+    line-height: 26px;
+    color: #353535;
+}
+
+.client-edit {
+    line-height: 26px;
+    color: #b5b5b5;
+    cursor: pointer;
+}
+
+.client-edit:hover {
+    color: #868686;
 }

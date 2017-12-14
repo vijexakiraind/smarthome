@@ -96,3 +96,39 @@ body {
 .client-edit:hover {
     color: #868686;
 }
+
+.client-body.power-switch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    position: absolute;
+    bottom: 0;
+    width: 280px;
+}
+
+.icon-power {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.icon-power:hover {
+    opacity: 1;
+}
+
+.icon-power-inner,
+.icon-power-outer {
+    transition: fill .2s ease;
+}
+
+.icon-power.on .icon-power-inner,
+.icon-power.on .icon-power-outer {
+    fill: green;
+}
+
+.icon-power.off .icon-power-inner,
+.icon-power.off .icon-power-outer {
+    fill: rgb(160, 160, 160);
+}

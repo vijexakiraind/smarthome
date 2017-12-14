@@ -62,43 +62,59 @@ end
 wifi.eventmon.register(wifi.eventmon.AP_STACONNECTED, wifi_ap_connect_event)
 wifi.eventmon.register(wifi.eventmon.AP_STADISCONNECTED, wifi_ap_disconnect_event)
 
--- filenames for response building (http headers + data)
-filenames = {
-    html = "web_server_html_headers.txt page.html",
-    css = "web_server_css_headers.txt page.css",
-    favicon = "web_server_favicon_headers.txt favicon.png"
-}
-
-function make_response(type)
-    response = nil
-    if file.open(string.match(filenames[type], "(.+)%s"), "r") then 
-        response = file.read().."\n"
-        file.close()
-    end
-    filename = string.match(filenames[type], "%s(.+)")
-    if file.open(filename, "rb") then
-        while file.seek(cur, 0) < file.stat(filename).size do
-            response = response..file.read()
-        end
-        file.close()
-    end
-    return response
-end
-
 web_srv = net.createServer(net.TCP, 30)
 web_srv:listen(80, function(conn)
+    -- filenames for response building (http headers + data)
+    local filenames = {
+        html = "web_server_html_headers.txt page.html",
+        css = "web_server_css_headers.txt page.css",
+        favicon = "web_server_favicon_headers.txt favicon.png"
+    }
+
+    local response = {}
+    local function make_response(type)
+        
+        if file.open(string.match(filenames[type], "(.+)%s"), "r") then 
+            -- first block is headers
+            response[1] = file.read().."\n"
+            file.close()
+        end
+        filename = string.match(filenames[type], "%s(.+)")
+        if file.open(filename, "rb") then
+            local i = 2
+            while file.seek(cur, 0) < file.stat(filename).size do
+                print("Reading "..i.." "..node.heap())
+                response[i] = file.read(1024)
+                i = i + 1
+            end
+            file.close()
+        end
+        return response
+    end
+
+    local function send_response(sock)
+        if #response>0 then 
+            sock:send(table.remove(response, 1))
+        else
+            sock:close()
+        end
+    end
+
+    conn:on("sent", send_response)
 
     conn:on("receive", function(sock, data)
-        request = string.match(data, "%s(/.-)%s")
+        local request = string.match(data, "%s(/.-)%s")
+        local response 
         print("STA web "..request)
+        print("Before reading "..node.heap())
         if request == "/page.css" then
-            sock:send(make_response("css"))
+            response = make_response("css")
         elseif request == "/favicon.ico" then
-            sock:send(make_response("favicon"))
+            response = make_response("favicon")
         else
-            sock:send(make_response("html"))
+            response = make_response("html")
         end
+        print("Before sending "..node.heap())
+        send_response(sock, response)
     end)
-    
-    conn:on("sent", function (c) c:close() end)
 end)

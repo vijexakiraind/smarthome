@@ -81,11 +81,9 @@ web_srv:listen(80, function(conn)
         end
         filename = string.match(filenames[type], "%s(.+)")
         if file.open(filename, "rb") then
-            local i = 2
             while file.seek(cur, 0) < file.stat(filename).size do
-                print("Reading "..i.." "..node.heap())
-                response[i] = file.read(1024)
-                i = i + 1
+                print("Reading "..node.heap())
+                table.insert(response, file.read(1024))
             end
             file.close()
         end

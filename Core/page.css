@@ -1,3 +1,47 @@
 body {
-    color: green;
+    margin: 0;
+    background-color: #f1f1f1;
+    font-size: 16px;
+    font-family: sans-serif;
+}
+
+.clients-container {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 15px 0 0;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.client {
+    background-color: white;
+    box-shadow: 0 0 10px #c5c5c5;
+    width: 300px;
+    height: 300px;
+    margin-bottom: 15px;
+    border-radius: 3px;
+}
+
+.client.empty {
+    box-shadow: none;
+    background-color: #dcdcdc;
+}
+
+@media (max-width: 1250px) {
+    .clients-container {
+        padding: 15px 15px 0;
+    }
+
+    .client {
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 980px) {
+    .client {
+        width: 100%;
+        margin-right: 0;
+    }
 }

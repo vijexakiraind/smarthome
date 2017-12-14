@@ -18,15 +18,20 @@ body {
 .client {
     background-color: white;
     box-shadow: 0 0 10px #c5c5c5;
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
     margin-bottom: 15px;
     border-radius: 3px;
+    padding: 10px;
 }
 
 .client.empty {
     box-shadow: none;
     background-color: #dcdcdc;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media (max-width: 1250px) {
@@ -44,4 +49,86 @@ body {
         width: 100%;
         margin-right: 0;
     }
+}
+
+.empty-client-placeholder {
+    text-align: center;
+    user-select: none;
+}
+
+.empty-client-placeholder-title {
+    font-size: 29px;
+    font-weight: 600;
+    color: #737373;
+    margin-bottom: 2px;
+}
+
+.empty-client-placeholder-ui a {
+    color: #387ee5;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.empty-client-placeholder-ui a:hover {
+    text-decoration: underline;
+}
+
+
+.client-header {
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.client-title {
+    margin: 0 5px;
+    font-size: 22px;
+    line-height: 26px;
+    color: #353535;
+}
+
+.client-edit {
+    line-height: 26px;
+    color: #b5b5b5;
+    cursor: pointer;
+}
+
+.client-edit:hover {
+    color: #868686;
+}
+
+.client-body.power-switch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    position: absolute;
+    bottom: 0;
+    width: 280px;
+}
+
+.icon-power {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.icon-power:hover {
+    opacity: 1;
+}
+
+.icon-power-inner,
+.icon-power-outer {
+    transition: fill .2s ease;
+}
+
+.icon-power.on .icon-power-inner,
+.icon-power.on .icon-power-outer {
+    fill: green;
+}
+
+.icon-power.off .icon-power-inner,
+.icon-power.off .icon-power-outer {
+    fill: rgb(160, 160, 160);
 }

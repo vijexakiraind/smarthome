@@ -103,7 +103,7 @@ body {
     align-items: center;
     height: 300px;
     position: absolute;
-    bottom: 0;
+    top: 30px;
     width: 280px;
 }
 

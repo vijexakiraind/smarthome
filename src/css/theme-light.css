@@ -1,44 +1,44 @@
-body {
+body.light-theme  {
     background-color: #f1f1f1;
 }
 
-.client {
+.light-theme .client {
     background-color: white;
     box-shadow: 0 0 10px #c5c5c5;
     border-radius: 3px;
 }
 
-.client.empty {
+.light-theme .client.empty {
     box-shadow: none;
     background-color: #dcdcdc;
 }
 
-.empty-client-placeholder-title {
+.light-theme .empty-client-placeholder-title {
     color: #737373;
 }
 
-.empty-client-placeholder-ui a {
+.light-theme .empty-client-placeholder-ui a {
     color: #387ee5;
 }
 
-.client-title {
+.light-theme .client-title {
     color: #353535;
 }
 
-.client-edit {
+.light-theme .client-edit {
     color: #b5b5b5;
 }
 
-.client-edit:hover {
+.light-theme .client-edit:hover {
     color: #868686;
 }
 
-.icon-power.on .icon-power-inner,
-.icon-power.on .icon-power-outer {
+.light-theme .icon-power.on .icon-power-inner,
+.light-theme .icon-power.on .icon-power-outer {
     fill: green;
 }
 
-.icon-power.off .icon-power-inner,
-.icon-power.off .icon-power-outer {
+.light-theme .icon-power.off .icon-power-inner,
+.light-theme .icon-power.off .icon-power-outer {
     fill: rgb(160, 160, 160);
 }

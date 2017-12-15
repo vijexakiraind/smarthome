@@ -1,44 +1,44 @@
-body {
+body.dark-theme {
     background-color: #2b2b2b;
 }
 
-.client {
+.dark-theme .client {
     background-color: #3e3e3e;
     box-shadow: 0 0 10px #292929;
     border-radius: 3px;
 }
 
-.client.empty {
+.dark-theme .client.empty {
     box-shadow: none;
     background-color: #212121;
 }
 
-.empty-client-placeholder-title {
+.dark-theme .empty-client-placeholder-title {
     color: #adadad;
 }
 
-.empty-client-placeholder-ui a {
+.dark-theme .empty-client-placeholder-ui a {
     color: #387ee5;
 }
 
-.client-title {
+.dark-theme .client-title {
     color: #cfcfcf;
 }
 
-.client-edit {
+.dark-theme .client-edit {
     color: #868686;
 }
 
-.client-edit:hover {
+.dark-theme .client-edit:hover {
     color: #b5b5b5;
 }
 
-.icon-power.on .icon-power-inner,
-.icon-power.on .icon-power-outer {
+.dark-theme .icon-power.on .icon-power-inner,
+.dark-theme .icon-power.on .icon-power-outer {
     fill: rgb(20, 150, 20);
 }
 
-.icon-power.off .icon-power-inner,
-.icon-power.off .icon-power-outer {
+.dark-theme .icon-power.off .icon-power-inner,
+.dark-theme .icon-power.off .icon-power-outer {
     fill: rgb(134, 134, 134);
 }

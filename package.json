@@ -1,0 +1,22 @@
+{
+  "name": "smarthome",
+  "version": "0.1.0",
+  "description": "Centralized system on several ESP8266's.",
+  "main": "builder.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VIJEXA/smarthome.git"
+  },
+  "author": "vijexa, kiraind",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VIJEXA/smarthome/issues"
+  },
+  "homepage": "https://github.com/VIJEXA/smarthome#readme",
+  "dependencies": {
+    "xml2js": "^0.4.19"
+  }
+}

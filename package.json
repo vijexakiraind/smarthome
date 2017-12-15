@@ -21,8 +21,10 @@
     "url": "https://github.com/VIJEXA/smarthome/issues"
   },
   "homepage": "https://github.com/VIJEXA/smarthome#readme",
-  "devDependencies": {
-    "xml2js": "^0.4.19",
+  "dependencies": {
     "nodemcu-tool": "2.1.1"
+  },
+  "devDependencies": {
+    "xml2js": "^0.4.19"
   }
 }

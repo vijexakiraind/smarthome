@@ -12,23 +12,24 @@ const write = (error, line) => {
 function processLine(line, fileName, lineNumber, callback) {
     parseString(line, (err, res) => {
         if(err || !res) {
-            callback(false, line)
+            callback(false, line.trim())
             return
         }
         const tagName = Object.keys(res)[0]
 
-        let path, newTagName
+        let path, newTagName, contentHandler
         switch(tagName) {
             case 'link': {
                 switch(res[tagName]['$']['rel']) {
                     case 'stylesheet': {
                         newTagName = 'style'
+                        contentHandler = s => s
                         path = srcDir + '/' + res[tagName]['$']['href']
                         break
                     }
                     default: {
                         console.warn(`Unknown rel attribute: ${res[tagName]['$']['rel']}\n  > At ${fileName}:${lineNumber}`)
-                        callback(false, line)
+                        callback(false, line.trim())
                         return
                     }
                 }
@@ -36,11 +37,12 @@ function processLine(line, fileName, lineNumber, callback) {
             }
             case 'script': {
                 newTagName = 'script'
+                contentHandler = jsHandler
                 path = srcDir + '/' + res[tagName]['$']['src']
                 break
             }
             default: {
-                callback(false, line)
+                callback(false, line.trim())
                 return
             }
         }
@@ -53,7 +55,7 @@ function processLine(line, fileName, lineNumber, callback) {
 
         const content = fs.readFileSync(path, 'utf8')
 
-        callback(false, `<${newTagName}>${content}</${newTagName}>`)
+        callback(false, `<${newTagName}>${contentHandler(content)}</${newTagName}>`)
     })
 }
 
@@ -80,3 +82,12 @@ const newLines = lines.map((line, i) => {
 })
 
  fs.writeFileSync(output, newLines.join(''), 'utf8')
+
+ function jsHandler(str) {
+    let lines = str.split('\n')
+
+    lines = lines.map(ln => ln.trim())
+                 .filter(ln => ln.length > 0)
+    
+    return lines.join('\n')
+ }

@@ -58,27 +58,34 @@ wifi.eventmon.register(wifi.eventmon.AP_STADISCONNECTED, wifi_ap_disconnect_even
 web_srv = net.createServer(net.TCP, 30)
 web_srv:listen(80, function(conn)
     -- filenames for response building (http headers + data)
-    local filenames = {
-        html = "web_server_html_headers.txt page.html",
-        css = "web_server_css_headers.txt page.css",
-        favicon = "web_server_favicon_headers.txt favicon.png"
+    local base_headers = "HTTP/1.1 200 OK\nCache-Control: no-cache\n"
+    local content_type = {
+        html = "text/html; charset=UTF-8",
+        css = "text/css; charset=UTF-8",
+        js = "application/javascript; charset=UTF-8",
+        ico = "image/x-icon",
+        png = "image/png"
     }
 
     local response = {}
-    local function make_response(type)
-        
-        if file.open(string.match(filenames[type], "(.+)%s"), "r") then 
-            -- first block is headers
-            response[1] = file.read().."\n"
-            file.close()
+    local function make_response(filename)
+        print("File name "..filename)
+        local type
+        if filename=="" then 
+            filename = "page.html"
         end
-        filename = string.match(filenames[type], "%s(.+)")
-        if file.open(filename, "rb") then
-            while file.seek(cur, 0) < file.stat(filename).size do
-                print("Reading "..node.heap())
-                table.insert(response, file.read(1024))
+        type = string.match(filename, "%.(%a+)")
+        print(type)
+        -- making http headers and checking for bad request
+        if pcall(function() response[1] = base_headers..content_type[type].."\n\n" end) then
+            if file.open(filename, "rb") then
+                while file.seek(cur, 0) < file.stat(filename).size do
+                    table.insert(response, file.read(1024))
+                end
+                file.close()
             end
-            file.close()
+        else
+            print("!!!Bad request: "..type)
         end
         return response
     end
@@ -94,17 +101,11 @@ web_srv:listen(80, function(conn)
     conn:on("sent", send_response)
 
     conn:on("receive", function(sock, data)
-        local request = string.match(data, "%s(/.-)%s")
+        local request = string.match(data, "%s/(.-)%s")
         local response 
         print("STA web "..request)
         print("Before reading "..node.heap())
-        if request == "/page.css" then
-            response = make_response("css")
-        elseif request == "/favicon.ico" then
-            response = make_response("favicon")
-        else
-            response = make_response("html")
-        end
+        response = make_response(request)
         print("Before sending "..node.heap())
         send_response(sock, response)
     end)

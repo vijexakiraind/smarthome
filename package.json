@@ -10,13 +10,17 @@
     "type": "git",
     "url": "git+https://github.com/VIJEXA/smarthome.git"
   },
-  "author": "vijexa, kiraind",
+  "author": "vijexa",
+  "contributors": [
+    { "name": "kiraind", "email": "ne.eshte@otso.city" },
+    { "name": "vijexa" }
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/VIJEXA/smarthome/issues"
   },
   "homepage": "https://github.com/VIJEXA/smarthome#readme",
-  "dependencies": {
+  "devDependencies": {
     "xml2js": "^0.4.19",
     "nodemcu-tool": "2.1.1"
   }

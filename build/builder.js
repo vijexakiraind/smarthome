@@ -3,7 +3,7 @@ const { parseString } = require('xml2js')
 
 const srcDir = 'src'
 const entry = 'index.html'
-const output = 'Core/page.html'
+const output = process.argv[2] || 'Core/page.html'
 
 const write = (error, line) => {
     console.log('res: ', line)

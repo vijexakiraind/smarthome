@@ -1,6 +1,5 @@
 @echo off
 echo Building...
-node build/builder.js index.html page.html
+node build/builder.js index.html Core/page.html
 echo Uploading...
-node node_modules/nodemcu-tool/bin/nodemcu-tool.js -p %1 -b 115200 upload page.html
-del page.html
+node node_modules/nodemcu-tool/bin/nodemcu-tool.js -p %1 -b 115200 upload Core/page.html

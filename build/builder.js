@@ -2,8 +2,8 @@ const fs = require('fs')
 const { parseString } = require('xml2js')
 
 const srcDir = 'src'
-const entry = 'index.html'
-const output = process.argv[2] || 'Core/page.html'
+const entry = process.argv[2] || 'src/index.html' || 'index.html'
+const output = process.argv[3] || 'Core/page.html'
 
 const write = (error, line) => {
     console.log('res: ', line)

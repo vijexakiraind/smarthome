@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 clients_datafile.txt
 credentials.lua
+=======
+clients_datafile.json
+credentials.lua
+>>>>>>> 78c61461cd6704e16b4f614010d1e252b7fd96ff

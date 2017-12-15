@@ -1,20 +1,13 @@
 print("App running")
 
 -- parsing clients datafile
-clients_data = {{},{},{},{}} -- max 4 clients
-if file.open("clients_datafile.txt", "r") then
+clients_data = {} -- max 4 clients
+if file.open("clients_datafile.json", "r") then
     local raw_data = file.read()
     file.close()
-    -- cutting first two strings
-    raw_data = string.sub(raw_data, string.match(raw_data, ".-\n.-\n"):len()+1, raw_data:len())
-    local i = 1
-    while (raw_data:len()>0) do 
-        clients_data[i]["mac"] = string.match(raw_data, "$(.-)%s")
-        clients_data[i]["name"] = string.match(raw_data, "#(.-)%s")
-        clients_data[i]["description"] = string.match(raw_data, "@(.-)\n")
-        raw_data = string.sub(raw_data, string.match(raw_data, ".-\n"):len()+1, raw_data:len())
-        i = i + 1
-    end
+    -- cutting comments
+    raw_data = string.sub(raw_data, string.match(raw_data, "(#.-)%["):len()+1, raw_data:len())
+    clients_data = sjson.decode(raw_data)
 end
 
 clients_online = {{},{},{},{}} -- max 4 clients
@@ -62,43 +55,58 @@ end
 wifi.eventmon.register(wifi.eventmon.AP_STACONNECTED, wifi_ap_connect_event)
 wifi.eventmon.register(wifi.eventmon.AP_STADISCONNECTED, wifi_ap_disconnect_event)
 
--- filenames for response building (http headers + data)
-filenames = {
-    html = "web_server_html_headers.txt page.html",
-    css = "web_server_css_headers.txt page.css",
-    favicon = "web_server_favicon_headers.txt favicon.png"
-}
-
-function make_response(type)
-    response = nil
-    if file.open(string.match(filenames[type], "(.+)%s"), "r") then 
-        response = file.read().."\n"
-        file.close()
-    end
-    filename = string.match(filenames[type], "%s(.+)")
-    if file.open(filename, "rb") then
-        while file.seek(cur, 0) < file.stat(filename).size do
-            response = response..file.read()
-        end
-        file.close()
-    end
-    return response
-end
-
 web_srv = net.createServer(net.TCP, 30)
 web_srv:listen(80, function(conn)
+    -- filenames for response building (http headers + data)
+    local base_headers = "HTTP/1.1 200 OK\nCache-Control: no-cache\n"
+    local content_type = {
+        html = "text/html; charset=UTF-8",
+        css = "text/css; charset=UTF-8",
+        js = "application/javascript; charset=UTF-8",
+        ico = "image/x-icon",
+        png = "image/png"
+    }
+
+    local response = {}
+    local function make_response(filename)
+        print("File name "..filename)
+        local type
+        if filename=="" then 
+            filename = "page.html"
+        end
+        type = string.match(filename, "%.(%a+)")
+        print(type)
+        -- making http headers and checking for bad request
+        if pcall(function() response[1] = base_headers..content_type[type].."\n\n" end) then
+            if file.open(filename, "rb") then
+                while file.seek(cur, 0) < file.stat(filename).size do
+                    table.insert(response, file.read(1024))
+                end
+                file.close()
+            end
+        else
+            print("!!!Bad request: "..type)
+        end
+        return response
+    end
+
+    local function send_response(sock)
+        if #response>0 then 
+            sock:send(table.remove(response, 1))
+        else
+            sock:close()
+        end
+    end
+
+    conn:on("sent", send_response)
 
     conn:on("receive", function(sock, data)
-        request = string.match(data, "%s(/.-)%s")
+        local request = string.match(data, "%s/(.-)%s")
+        local response 
         print("STA web "..request)
-        if request == "/page.css" then
-            sock:send(make_response("css"))
-        elseif request == "/favicon.ico" then
-            sock:send(make_response("favicon"))
-        else
-            sock:send(make_response("html"))
-        end
+        print("Before reading "..node.heap())
+        response = make_response(request)
+        print("Before sending "..node.heap())
+        send_response(sock, response)
     end)
-    
-    conn:on("sent", function (c) c:close() end)
 end)

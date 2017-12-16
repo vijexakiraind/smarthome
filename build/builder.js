@@ -1,4 +1,5 @@
 const fs = require('fs')
+const path = require('path')
 const { parseString } = require('xml2js')
 
 const srcDir = 'src'

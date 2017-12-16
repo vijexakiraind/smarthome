@@ -1,0 +1,38 @@
+.notification {
+    height: 75px;
+    width: 100%;
+    border-bottom: 1px solid #e2e2e2;
+    
+    justify-content: space-between;
+    align-items: center;
+
+    display: none;
+}
+
+.pwa-notification .notification.pwa {
+    display: flex;
+}
+
+.notification-info {
+    margin-left: 15px;
+}
+
+.notification-action {
+    margin-right: 15px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.notification-title {
+    font-size: 18px;
+}
+
+.notification-sub {
+    font-size: 15px;
+}
+
+.notification-sub a {
+    color: #387ee5;
+    text-decoration: none;
+}

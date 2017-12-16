@@ -1,5 +1,8 @@
 print("App running")
 
+-- table of all variables that can be sent to frontend (except devices list)
+variable_registry = {}
+
 -- parsing clients datafile
 clients_data = {} -- max 4 clients
 if file.open("clients_datafile.json", "r") then
@@ -64,15 +67,23 @@ web_srv:listen(80, function(conn)
         css = "text/css; charset=UTF-8",
         js = "application/javascript; charset=UTF-8",
         ico = "image/x-icon",
-        png = "image/png"
+        png = "image/png",
+        json = "application/json; charset=UTF-8"
+    }
+    local api_tables = {
+        variableregistry = variable_registry,
+        devices = clients_data, 
+        devicesonline = clients_online
     }
 
     local response = {}
     local function make_response(filename)
         print("File name "..filename)
         local type
-        if filename=="" then 
+        if filename=="/" then 
             filename = "page.html"
+        else
+            filename = string.match(filename, "/(.+)")
         end
         type = string.match(filename, "%.(%a+)")
         print(type)
@@ -84,10 +95,31 @@ web_srv:listen(80, function(conn)
                 end
                 file.close()
             end
+        -- parsing api calls
         else
-            print("!!!Bad request: "..type)
+            -- api call looks like q/devices
+            filename = string.match(filename, "q/(.+)")
+            response[1] = base_headers..content_type["json"].."\n\n"
+            local encoder
+            -- reading api
+            if (pcall(function() encoder = sjson.encoder(api_tables[filename]) end)) then
+                print("Reading api")
+                repeat
+                    local chunk = encoder:read()
+                    print(chunk)
+                    table.insert(response, chunk)
+                until chunk ~= nil
+            else
+                print("!!!Bad request: "..(filename or "nil"))
+            end
         end
         return response
+    end
+
+    local function exec_api(data, request) 
+        if(request == "changedevices") then
+            
+        end
     end
 
     local function send_response(sock)
@@ -101,12 +133,15 @@ web_srv:listen(80, function(conn)
     conn:on("sent", send_response)
 
     conn:on("receive", function(sock, data)
-        local request = string.match(data, "%s/(.-)%s")
+        local request_type = string.match(data, "%a+%s")
+        local request = string.match(data, "%s(/.-)%s")
         local response 
-        print("STA web "..request)
-        print("Before reading "..node.heap())
-        response = make_response(request)
-        print("Before sending "..node.heap())
+        print("STA web "..string.match(data, ".-/n"))
+        if request_type == "GET" then
+            response = make_response(request)
+        elseif request_type == "POST" then
+            response = exec_api(data, request)
+        end
         send_response(sock, response)
     end)
 end)

@@ -1,7 +1,7 @@
 const fs = require('fs')
 const { parseString } = require('xml2js')
 
-const srcDir = 'src'
+const srcDir = '../src'
 const entry = process.argv[2] || 'index.html'
 const output = process.argv[3] || 'Core/page.html'
 

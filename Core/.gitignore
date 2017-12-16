@@ -1,3 +1,6 @@
 clients_datafile.json
 credentials.lua
 page.html
+upload.bat
+upload_bug.bat
+terminal.bat

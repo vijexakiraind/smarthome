@@ -1,10 +1,18 @@
+// args: 1: path to entry point, 2: path to output
+
 const fs = require('fs')
 const path = require('path')
 const { parseString } = require('xml2js')
 
-const srcDir = path.join(process.cwd(), 'src')
-const entry = path.join(process.cwd(), process.argv[2] || 'src/index.html')
-const output = process.argv[3] || 'Core/page.html'
+const entry = path.isAbsolute(process.argv[2]) ?
+    process.argv[2]
+    : path.join(process.cwd(), process.argv[2])
+
+const srcDir = path.dirname(entry)
+
+const output = path.isAbsolute(process.argv[3]) ?
+    process.argv[3]
+    : path.join(process.cwd(), process.argv[3])
 
 const write = (error, line) => {
     console.log('res: ', line)

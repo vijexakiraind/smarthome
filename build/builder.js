@@ -50,6 +50,12 @@ function processLine(line, fileName, lineNumber, callback) {
                 srcPath = path.join(srcDir, res[tagName]['$']['src'])
                 break
             }
+            case 'component': {
+                newTagName = ''
+                contentHandler = s => s
+                srcPath = path.join(srcDir, res[tagName]['$']['src'])
+                break
+            }
             default: {
                 callback(false, line.trim())
                 return
@@ -64,7 +70,10 @@ function processLine(line, fileName, lineNumber, callback) {
 
         const content = fs.readFileSync(srcPath, 'utf8')
 
-        callback(false, `<${newTagName}>${contentHandler(content)}</${newTagName}>`)
+        if (newTagName)
+            callback(false, `<${newTagName}>${contentHandler(content)}</${newTagName}>`)
+        else
+        callback(false, contentHandler(content))
     })
 }
 

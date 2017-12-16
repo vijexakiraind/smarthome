@@ -1,8 +1,9 @@
 const fs = require('fs')
+const path = require('path')
 const { parseString } = require('xml2js')
 
-const srcDir = 'src'
-const entry = path.join(process.cwd(), process.argv[2] || 'index.html')
+const srcDir = path.join(process.cwd(), 'src')
+const entry = path.join(process.cwd(), process.argv[2] || 'src/index.html')
 const output = process.argv[3] || 'Core/page.html'
 
 const write = (error, line) => {
@@ -17,14 +18,14 @@ function processLine(line, fileName, lineNumber, callback) {
         }
         const tagName = Object.keys(res)[0]
 
-        let path, newTagName, contentHandler
+        let srcPath, newTagName, contentHandler
         switch(tagName) {
             case 'link': {
                 switch(res[tagName]['$']['rel']) {
                     case 'stylesheet': {
                         newTagName = 'style'
                         contentHandler = s => s
-                        path = srcDir + '/' + res[tagName]['$']['href']
+                        srcPath = path.join(srcDir, res[tagName]['$']['href'])
                         break
                     }
                     default: {
@@ -38,7 +39,7 @@ function processLine(line, fileName, lineNumber, callback) {
             case 'script': {
                 newTagName = 'script'
                 contentHandler = jsHandler
-                path = srcDir + '/' + res[tagName]['$']['src']
+                srcPath = path.join(srcDir, res[tagName]['$']['src'])
                 break
             }
             default: {
@@ -47,30 +48,30 @@ function processLine(line, fileName, lineNumber, callback) {
             }
         }
 
-        if(!fs.existsSync(path)) {
-            console.error(`File not found: ${path}\n  > At ${fileName}:${lineNumber}`)
+        if(!fs.existsSync(srcPath)) {
+            console.error(`File not found: ${srcPath}\n  > At ${fileName}:${lineNumber}`)
             callback(true)
             return
         }
 
-        const content = fs.readFileSync(path, 'utf8')
+        const content = fs.readFileSync(srcPath, 'utf8')
 
         callback(false, `<${newTagName}>${contentHandler(content)}</${newTagName}>`)
     })
 }
 
-if(!fs.existsSync(srcDir + '/' + entry)) {
-    console.error(`File not found: ${srcDir + '/' + entry}`)
+if(!fs.existsSync(entry)) {
+    console.error(`File not found: ${entry}`)
 }
 
-const file = fs.readFileSync(srcDir + '/' + entry, 'utf8')
+const file = fs.readFileSync(entry, 'utf8')
 
 const lines = file.split('\n')
 
 const newLines = lines.map((line, i) => {
     let res
     
-    processLine(line, srcDir + '/' + entry, i + 1, (err, processed) => {
+    processLine(line, entry, i + 1, (err, processed) => {
         if(err) {
             process.exit(1)
         }

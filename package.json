@@ -5,7 +5,8 @@
   "main": "builder.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev-server": "node dev/dev-server"
+    "dev-server": "node dev/dev-server",
+    "build-frontend": "node build/builder.js src/index.html Core/page.html"
   },
   "repository": {
     "type": "git",

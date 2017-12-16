@@ -42,3 +42,7 @@ body.light-theme  {
 .light-theme .icon-power.off .icon-power-outer {
     fill: rgb(160, 160, 160);
 }
+
+.light-theme .notification {
+    background-color: #fbfbfb;
+}

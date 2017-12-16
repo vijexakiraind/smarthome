@@ -32,7 +32,7 @@ function processLine(line, fileName, lineNumber, callback) {
                 switch(res[tagName]['$']['rel']) {
                     case 'stylesheet': {
                         newTagName = 'style'
-                        contentHandler = s => s
+                        contentHandler = cssHandler
                         srcPath = path.join(srcDir, res[tagName]['$']['href'])
                         break
                     }
@@ -108,4 +108,13 @@ const newLines = lines.map((line, i) => {
                  .filter(ln => ln.length > 0)
     
     return lines.join('\n')
+ }
+
+ function cssHandler(str) {
+    let lines = str.split('\n')
+
+    lines = lines.map(ln => ln.trim())
+                 .filter(ln => ln.length > 0)
+    
+    return lines.join('')
  }

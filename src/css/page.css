@@ -51,6 +51,11 @@ body {
 .empty-client-placeholder {
     text-align: center;
     user-select: none;
+    display: none;
+}
+
+.client.empty .empty-client-placeholder {
+    display: block;
 }
 
 .empty-client-placeholder-title {
@@ -68,7 +73,6 @@ body {
     text-decoration: underline;
 }
 
-
 .client-header {
     user-select: none;
     display: flex;
@@ -79,6 +83,11 @@ body {
     margin: 0 5px;
     font-size: 22px;
     line-height: 26px;
+}
+
+.client.empty .client-header,
+.client.empty .client-title {
+    display: none;
 }
 
 .client-edit {

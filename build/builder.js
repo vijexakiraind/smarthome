@@ -32,7 +32,7 @@ function processLine(line, fileName, lineNumber, callback) {
                 switch(res[tagName]['$']['rel']) {
                     case 'stylesheet': {
                         newTagName = 'style'
-                        contentHandler = s => s
+                        contentHandler = cssHandler
                         srcPath = path.join(srcDir, res[tagName]['$']['href'])
                         break
                     }
@@ -50,6 +50,12 @@ function processLine(line, fileName, lineNumber, callback) {
                 srcPath = path.join(srcDir, res[tagName]['$']['src'])
                 break
             }
+            case 'component': {
+                newTagName = ''
+                contentHandler = s => s
+                srcPath = path.join(srcDir, res[tagName]['$']['src'])
+                break
+            }
             default: {
                 callback(false, line.trim())
                 return
@@ -64,7 +70,10 @@ function processLine(line, fileName, lineNumber, callback) {
 
         const content = fs.readFileSync(srcPath, 'utf8')
 
-        callback(false, `<${newTagName}>${contentHandler(content)}</${newTagName}>`)
+        if (newTagName)
+            callback(false, `<${newTagName}>${contentHandler(content)}</${newTagName}>`)
+        else
+        callback(false, contentHandler(content))
     })
 }
 
@@ -99,4 +108,13 @@ const newLines = lines.map((line, i) => {
                  .filter(ln => ln.length > 0)
     
     return lines.join('\n')
+ }
+
+ function cssHandler(str) {
+    let lines = str.split('\n')
+
+    lines = lines.map(ln => ln.trim())
+                 .filter(ln => ln.length > 0)
+    
+    return lines.join('')
  }

@@ -9,10 +9,10 @@ export default class Notification extends React.Component {
             <div className="Notification pwa">
                 <div className="Notification-info">
                     <div className="Notification-title">
-                        Add this app to home screen
+                        {this.props.text}
                     </div>
                     <div className="Notification-sub">
-                        <a href="https://www.howtogeek.com/196087/" rel="noopener noreferrer" target="_blank">How?</a>
+                        {this.props.sub}
                     </div>
                 </div>
                 <div className="Notification-action" onClick={this.props.close}>

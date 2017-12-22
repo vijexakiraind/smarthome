@@ -10,17 +10,20 @@ class App extends React.Component {
         super(props)
         this.state = {
             notifications: [],
-            darkTheme: false
+            darkTheme: true
         }
 
         if(/Android|webOS|iPhone|iPad|iPod|Opera Mini/i.test(navigator.userAgent) &&
             !window.matchMedia('(display-mode: standalone)').matches ) {
+                const key = this.state.notifications.length
                 this.state.notifications.push(
                     <Notification
-                        key={this.state.notifications.length}
-                        close={this.closeNotification.bind(this, 0)}
+                        key={key}
+                        close={this.closeNotification.bind(this, key)}
+                        text={'Add this app to home screen'}
+                        sub={<a href="https://www.howtogeek.com/196087/" rel="noopener noreferrer" target="_blank">How?</a>}
                         />
-                )            
+                )
         }
 
         if(this.state.darkTheme) {
@@ -31,6 +34,18 @@ class App extends React.Component {
             document.body.classList.add('light-theme')
             document.getElementById('meta-theme-color').setAttribute('content', '#eaeaea')
         }
+
+        // debug
+
+        const key1 = this.state.notifications.length
+        this.state.notifications.push(
+            <Notification
+                key={key1}
+                close={this.closeNotification.bind(this, key1)}
+                text={'Хочешь стать программистом?'}
+                sub={'Иди нахуй'}
+                />
+        )
     }
 
     closeNotification(i) {
@@ -60,6 +75,9 @@ class App extends React.Component {
                 { this.state.notifications }
                 <div className="clients-container">
                     <Client />
+                    <Client />
+                    <Client />
+                    <Client empty />
                 </div>
             </div>
         )

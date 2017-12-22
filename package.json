@@ -4,19 +4,28 @@
   "description": "Centralized system on several ESP8266's.",
   "main": "builder.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev-server": "node dev/dev-server",
+    "build-frontend": "node build/builder.js src/index.html Core/page.html"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/VIJEXA/smarthome.git"
   },
-  "author": "vijexa, kiraind",
+  "author": "vijexa",
+  "contributors": [
+    { "name": "kiraind", "email": "ne.eshte@otso.city" },
+    { "name": "vijexa" }
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/VIJEXA/smarthome/issues"
   },
   "homepage": "https://github.com/VIJEXA/smarthome#readme",
   "dependencies": {
+    "nodemcu-tool": "2.1.1"
+  },
+  "devDependencies": {
     "xml2js": "^0.4.19"
   }
 }

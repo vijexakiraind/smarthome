@@ -24,15 +24,9 @@
   }
 }
 
-
 .empty-Client-placeholder {
   text-align: center;
   user-select: none;
-  display: none;
-}
-
-.Client.empty .empty-Client-placeholder {
-  display: block;
 }
 
 .empty-Client-placeholder-title {

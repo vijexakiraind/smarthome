@@ -46,5 +46,9 @@ body.dark-theme {
 .dark-theme .Notification {
     background-color: #3e3e3e;
     color: #cfcfcf;
-    border-color: #292929;
+    border-color: #2c2c2c;
+}
+
+.dark-theme .Notification-sub {
+    color: #b9b9b9;
 }

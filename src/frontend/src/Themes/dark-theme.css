@@ -2,34 +2,34 @@ body.dark-theme {
     background-color: #2b2b2b;
 }
 
-.dark-theme .client {
+.dark-theme .Client {
     background-color: #3e3e3e;
     box-shadow: 0 0 10px #292929;
     border-radius: 3px;
 }
 
-.dark-theme .client.empty {
+.dark-theme .Client.empty {
     box-shadow: none;
     background-color: #212121;
 }
 
-.dark-theme .empty-client-placeholder-title {
+.dark-theme .empty-Client-placeholder-title {
     color: #adadad;
 }
 
-.dark-theme .empty-client-placeholder-ui a {
+.dark-theme .empty-Client-placeholder-ui a {
     color: #387ee5;
 }
 
-.dark-theme .client-title {
+.dark-theme .Client-title {
     color: #cfcfcf;
 }
 
-.dark-theme .client-edit {
+.dark-theme .Client-edit {
     color: #868686;
 }
 
-.dark-theme .client-edit:hover {
+.dark-theme .Client-edit:hover {
     color: #b5b5b5;
 }
 
@@ -41,4 +41,14 @@ body.dark-theme {
 .dark-theme .icon-power.off .icon-power-inner,
 .dark-theme .icon-power.off .icon-power-outer {
     fill: rgb(134, 134, 134);
+}
+
+.dark-theme .Notification {
+    background-color: #3e3e3e;
+    color: #cfcfcf;
+    border-color: #2c2c2c;
+}
+
+.dark-theme .Notification-sub {
+    color: #b9b9b9;
 }

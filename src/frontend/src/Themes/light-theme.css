@@ -2,34 +2,34 @@ body.light-theme  {
     background-color: #f1f1f1;
 }
 
-.light-theme .client {
+.light-theme .Client {
     background-color: white;
     box-shadow: 0 0 10px #c5c5c5;
     border-radius: 3px;
 }
 
-.light-theme .client.empty {
+.light-theme .Client.empty {
     box-shadow: none;
     background-color: #dcdcdc;
 }
 
-.light-theme .empty-client-placeholder-title {
+.light-theme .empty-Client-placeholder-title {
     color: #737373;
 }
 
-.light-theme .empty-client-placeholder-ui a {
+.light-theme .empty-Client-placeholder-ui a {
     color: #387ee5;
 }
 
-.light-theme .client-title {
+.light-theme .Client-title {
     color: #353535;
 }
 
-.light-theme .client-edit {
+.light-theme .Client-edit {
     color: #b5b5b5;
 }
 
-.light-theme .client-edit:hover {
+.light-theme .Client-edit:hover {
     color: #868686;
 }
 
@@ -43,6 +43,7 @@ body.light-theme  {
     fill: rgb(160, 160, 160);
 }
 
-.light-theme .notification {
+.light-theme .Notification {
     background-color: #fbfbfb;
+    border-color: #e2e2e2;
 }

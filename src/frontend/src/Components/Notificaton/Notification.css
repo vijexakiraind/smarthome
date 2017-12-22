@@ -1,38 +1,35 @@
-.notification {
+.Notification {
     height: 75px;
     width: 100%;
-    border-bottom: 1px solid #e2e2e2;
+    border-bottom: 1px solid;
     
     justify-content: space-between;
     align-items: center;
 
-    display: none;
-}
-
-.pwa-notification .notification.pwa {
     display: flex;
 }
 
-.notification-info {
+.Notification-info {
     margin-left: 15px;
 }
 
-.notification-action {
+.Notification-action {
     margin-right: 15px;
     width: 40px;
     height: 40px;
     cursor: pointer;
 }
 
-.notification-title {
+.Notification-title {
     font-size: 18px;
 }
 
-.notification-sub {
+.Notification-sub {
     font-size: 15px;
+    color: #353535;
 }
 
-.notification-sub a {
+.Notification-sub a {
     color: #387ee5;
     text-decoration: none;
 }

@@ -1,0 +1,74 @@
+.Client {
+  width: 280px;
+  height: 280px;
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
+.Client.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1250px) {
+  .Client {
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 980px) {
+  .Client {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+
+.empty-Client-placeholder {
+  text-align: center;
+  user-select: none;
+}
+
+.empty-Client-placeholder-title {
+  font-size: 29px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.empty-Client-placeholder-ui a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.empty-Client-placeholder-ui a:hover {
+  text-decoration: underline;
+}
+
+.Client-header {
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Client-title {
+  margin: 0 5px;
+  font-size: 22px;
+  line-height: 26px;
+}
+
+.Client.empty .Client-header,
+.Client.empty .Client-title {
+  display: none;
+}
+
+.Client-edit {
+  line-height: 26px;
+  cursor: pointer;
+}
+
+.Client-body.power-switch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 253px;
+}

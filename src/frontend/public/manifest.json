@@ -1,0 +1,20 @@
+{
+    "short_name": "SmartHome",
+    "name": "SmartHome",
+    "icons": [
+        {
+            "src": "favicon128.png",
+            "type": "image/png",
+            "sizes": "128x128"
+        },
+        {
+            "src": "favicon192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        }
+    ],
+    "start_url": "./index.html",
+    "display": "standalone",
+    "theme_color": "#2b2b2b",
+    "background_color": "#000000"
+  }

@@ -52,3 +52,12 @@ body.dark-theme {
 .dark-theme .Notification-sub {
     color: #b9b9b9;
 }
+
+.Menu {
+    border-top-color: #1f1f1f;
+    background-color: #212121;
+}
+.Menu-pull-tab {
+    border-color: #1f1f1f;
+    background-color: #212121;
+}

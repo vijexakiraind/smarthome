@@ -47,3 +47,12 @@ body.light-theme  {
     background-color: #fbfbfb;
     border-color: #e2e2e2;
 }
+
+.Menu {
+    border-top-color: #e2e2e2;
+    background-color: white;
+}
+.Menu-pull-tab {
+    border-color: #e2e2e2;
+    background-color: white;
+}

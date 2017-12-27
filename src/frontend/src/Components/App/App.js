@@ -2,6 +2,7 @@ import React from 'react'
 
 import Client from '../Client/Client'
 import Notification from '../Notificaton/Notification'
+import Menu from '../Menu/Menu'
 
 import './App.css'
 
@@ -34,22 +35,11 @@ class App extends React.Component {
             document.body.classList.add('light-theme')
             document.getElementById('meta-theme-color').setAttribute('content', '#eaeaea')
         }
-
-        // debug
-
-        const key1 = this.state.notifications.length
-        this.state.notifications.push(
-            <Notification
-                key={key1}
-                close={this.closeNotification.bind(this, key1)}
-                text={'Хочешь стать программистом?'}
-                sub={'Иди нахуй'}
-                />
-        )
     }
 
     closeNotification(i) {
         this.setState({
+            // eslint-disable-next-line
             notifications: this.state.notifications.filter(n => n.key != i)
         })
     }
@@ -79,6 +69,7 @@ class App extends React.Component {
                     <Client />
                     <Client empty />
                 </div>
+                <Menu />
             </div>
         )
     }

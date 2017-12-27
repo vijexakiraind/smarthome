@@ -1,0 +1,33 @@
+.Menu {
+    position: fixed;
+    bottom: -100vh;
+    width: 100%;
+    height: 100vh;
+    border-top: 1px solid;
+}
+
+.Menu-pull-tab {
+    touch-action: none;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top: -51px;
+    right: 50px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border: 1px solid;
+    border-bottom: none;
+}
+
+.Menu-pull-tab-icon {
+    /*background-color: #cccccc;*/
+    height: 30px;
+    width: 30px;
+    margin: 10px;
+    border-radius: 15px;
+}
+
+.Menu-pull-tab-icon img {
+    height: 30px;
+    width: 30px;
+}

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import './Notification.css'
-import closeIcon from './close.svg'
+import closeIcon from './ic_close.svg'
 
 export default class Notification extends React.Component {
     render() {

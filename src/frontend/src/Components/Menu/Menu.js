@@ -1,10 +1,10 @@
 import React from 'react'
 
 import './Menu.css'
-import ic_settings from './ic_settings.svg'
-import ic_settings_dark from './ic_settings_dark.svg'
-import ic_close from './ic_close.svg'
-import ic_close_dark from './ic_close_dark.svg'
+import ic_settings from './../../Icons/ic_settings.svg'
+import ic_settings_dark from './../../Icons/ic_settings_dark.svg'
+import ic_close from './../../Icons/ic_close.svg'
+import ic_close_dark from './../../Icons/ic_close_dark.svg'
 
 export default class Menu extends React.Component {
     constructor(props) {
@@ -102,12 +102,15 @@ export default class Menu extends React.Component {
     }
 
     render() {
+        const f_ic_settings = this.props.dark ? ic_settings_dark : ic_settings
+        const f_ic_close = this.props.dark ? ic_close_dark : ic_close
+
         const transform = `translateY(${this.state.dPosY}px)`
         const transition = (this.state.opened || this.state.closed) ? 'transform .2s ease-out' : ''
 
         return (
             <div className="Menu"
-                style={{                   
+                style={{
                     transform,
                     transition
                 }}
@@ -120,7 +123,7 @@ export default class Menu extends React.Component {
                     onClick={this.toggle}
                 >
                     <div className="Menu-pull-tab-icon">
-                        <img src={this.state.opened ? ic_close_dark : ic_settings} alt={'Settings'} />
+                        <img src={this.state.opened ? f_ic_close : f_ic_settings} alt={'Settings'} />
                     </div>
                 </div>
             </div>

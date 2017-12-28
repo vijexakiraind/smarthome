@@ -48,11 +48,11 @@ body.light-theme  {
     border-color: #e2e2e2;
 }
 
-.Menu {
+.light-theme .Menu {
     border-top-color: #e2e2e2;
     background-color: white;
 }
-.Menu-pull-tab {
+.light-theme .Menu-pull-tab {
     border-color: #e2e2e2;
     background-color: white;
 }

@@ -19,6 +19,7 @@ class App extends React.Component {
                 const key = this.state.notifications.length
                 this.state.notifications.push(
                     <Notification
+                        dark={this.state.darkTheme}
                         key={key}
                         close={this.closeNotification.bind(this, key)}
                         text={'Add this app to home screen'}
@@ -69,7 +70,7 @@ class App extends React.Component {
                     <Client />
                     <Client empty />
                 </div>
-                <Menu />
+                <Menu dark={this.state.darkTheme} />
             </div>
         )
     }

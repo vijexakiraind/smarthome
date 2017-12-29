@@ -1,6 +1,7 @@
 {
     "short_name": "SmartHome",
     "name": "SmartHome",
+    "version": "0.1.0",
     "icons": [
         {
             "src": "favicon128.png",

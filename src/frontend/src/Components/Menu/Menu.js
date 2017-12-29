@@ -6,6 +6,8 @@ import ic_settings_dark from './../../Icons/ic_settings_dark.svg'
 import ic_close from './../../Icons/ic_close.svg'
 import ic_close_dark from './../../Icons/ic_close_dark.svg'
 
+const headerHeight = 65
+
 export default class Menu extends React.Component {
     constructor(props) {
         super(props);
@@ -14,8 +16,6 @@ export default class Menu extends React.Component {
         this.pullStart = this.pullStart.bind(this)
         this.pullEnd = this.pullEnd.bind(this)
         this.toggle = this.toggle.bind(this)
-        //this.open = this.open.bind(this)
-        //this.close = this.close.bind(this)
 
         this.state = {
             touch: null,
@@ -25,6 +25,8 @@ export default class Menu extends React.Component {
             closed: true,
             moveStart: null,
         }
+
+        window.addEventListener('resize', this.resize.bind(this))
     }
 
     pullStart(e) {
@@ -87,8 +89,8 @@ export default class Menu extends React.Component {
         this.setState({
             opened: true,
             closed: false,
-            dPosY: -window.innerHeight + 65,
-            prevPosY: -window.innerHeight + 65
+            dPosY: -window.innerHeight + headerHeight,
+            prevPosY: -window.innerHeight + headerHeight
         })
     }
 
@@ -101,11 +103,19 @@ export default class Menu extends React.Component {
         })
     }
 
+    resize() {
+        if(this.state.opened)
+            this.setState({
+                dPosY: -window.innerHeight + headerHeight,
+                prevPosY: -window.innerHeight + headerHeight
+            })
+    }
+
     render() {
         const f_ic_settings = this.props.dark ? ic_settings_dark : ic_settings
         const f_ic_close = this.props.dark ? ic_close_dark : ic_close
 
-        const overlayOpacity = -this.state.dPosY / (window.innerHeight - 65)
+        const overlayOpacity = -this.state.dPosY / (window.innerHeight - headerHeight)
         const transform = `translateY(${this.state.dPosY}px)`
         const transition = (this.state.opened || this.state.closed) ? 'transform .2s ease-out' : ''
 

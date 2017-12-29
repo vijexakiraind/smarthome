@@ -20,7 +20,6 @@
 }
 
 .Menu-pull-tab-icon {
-    /*background-color: #cccccc;*/
     height: 30px;
     width: 30px;
     margin: 10px;
@@ -30,4 +29,20 @@
 .Menu-pull-tab-icon img {
     height: 30px;
     width: 30px;
+}
+
+.Menu-overlay {
+    position: fixed;
+    top: 0;
+    height: 65px;
+    width: 100%;
+    background-color: #272727;
+}
+
+.Menu-overlay div {
+    margin-left: 15px;
+    font-size: 25px;
+    line-height: 65px;
+    font-weight: bold;
+    color: #d6d6d6;
 }

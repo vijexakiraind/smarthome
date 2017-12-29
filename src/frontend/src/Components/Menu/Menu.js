@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
 import './Menu.css'
 import ic_settings from './../../Icons/ic_settings.svg'
@@ -87,8 +87,8 @@ export default class Menu extends React.Component {
         this.setState({
             opened: true,
             closed: false,
-            dPosY: -window.innerHeight + 63,
-            prevPosY: -window.innerHeight + 63
+            dPosY: -window.innerHeight + 65,
+            prevPosY: -window.innerHeight + 65
         })
     }
 
@@ -105,28 +105,35 @@ export default class Menu extends React.Component {
         const f_ic_settings = this.props.dark ? ic_settings_dark : ic_settings
         const f_ic_close = this.props.dark ? ic_close_dark : ic_close
 
+        const overlayOpacity = -this.state.dPosY / (window.innerHeight - 65)
         const transform = `translateY(${this.state.dPosY}px)`
         const transition = (this.state.opened || this.state.closed) ? 'transform .2s ease-out' : ''
 
         return (
-            <div className="Menu"
-                style={{
-                    transform,
-                    transition
-                }}
-                
-            >
-                <div className="Menu-pull-tab"
-                    onTouchStart={this.pullStart}
-                    onTouchMove={this.pull}
-                    onTouchEnd={this.pullEnd}
-                    onClick={this.toggle}
+            <Fragment>
+                { !this.state.closed &&
+                <div className="Menu-overlay" style={{ opacity: overlayOpacity }}>
+                    <div>{'Settings'}</div>
+                </div> }
+                <div className="Menu"
+                    style={{
+                        transform,
+                        transition
+                    }}
+                    
                 >
-                    <div className="Menu-pull-tab-icon">
-                        <img src={this.state.opened ? f_ic_close : f_ic_settings} alt={'Settings'} />
+                    <div className="Menu-pull-tab"
+                        onTouchStart={this.pullStart}
+                        onTouchMove={this.pull}
+                        onTouchEnd={this.pullEnd}
+                        onClick={this.toggle}
+                    >
+                        <div className="Menu-pull-tab-icon">
+                            <img src={this.state.opened ? f_ic_close : f_ic_settings} alt={'Settings'} />
+                        </div>
                     </div>
                 </div>
-            </div>
+            </Fragment>
         )
     }
 }

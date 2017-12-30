@@ -1,5 +1,9 @@
 import React from 'react'
 
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as actionCreators from '../../Actions/'
+
 import Client from '../Client/Client'
 import Notification from '../Notificaton/Notification'
 import Menu from '../Menu/Menu'
@@ -10,16 +14,17 @@ class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            notifications: [],
-            darkTheme: true
+            notifications: []
         }
+
+        const { darkTheme } = this.props.AppState
 
         if(/Android|webOS|iPhone|iPad|iPod|Opera Mini/i.test(navigator.userAgent) &&
             !window.matchMedia('(display-mode: standalone)').matches ) {
                 const key = this.state.notifications.length
                 this.state.notifications.push(
                     <Notification
-                        dark={this.state.darkTheme}
+                        dark={darkTheme}
                         key={key}
                         close={this.closeNotification.bind(this, key)}
                         text={'Add this app to home screen'}
@@ -28,7 +33,7 @@ class App extends React.Component {
                 )
         }
 
-        if(this.state.darkTheme) {
+        if(darkTheme) {
             document.body.classList.add('dark-theme')
             document.getElementById('meta-theme-color').setAttribute('content', '#2b2b2b')
         }
@@ -45,10 +50,10 @@ class App extends React.Component {
         })
     }
 
-    toggleDarkTheme() {
-        this.setState({ darkTheme: !this.state.darkTheme })
-        
-        if(this.state.darkTheme) {
+    render() {
+        const { darkTheme } = this.props.AppState
+
+        if(darkTheme) {
             document.body.classList.add('dark-theme')
             document.body.classList.remove('light-theme')
             document.getElementById('meta-theme-color').setAttribute('content', '#2b2b2b')
@@ -58,9 +63,7 @@ class App extends React.Component {
             document.body.classList.remove('dark-theme')
             document.getElementById('meta-theme-color').setAttribute('content', '#eaeaea')
         }
-    }
 
-    render() {
         return (
             <div className="App">
                 { this.state.notifications }
@@ -70,10 +73,25 @@ class App extends React.Component {
                     <Client />
                     <Client empty />
                 </div>
-                <Menu dark={this.state.darkTheme} />
+                <Menu
+                    dark={darkTheme}
+                    autoTheme={this.props.AppState.autoTheme}
+                    setTheme={this.props.SetDarkTheme}
+                    setAutoTheme={this.props.SetAutoTheme}
+                />
             </div>
         )
     }
 }
 
-export default App;
+function mapStateToProps(AppState) {
+    return {
+        AppState
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(actionCreators, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

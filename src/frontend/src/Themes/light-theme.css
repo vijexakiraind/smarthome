@@ -56,3 +56,24 @@ body.light-theme  {
     border-color: #e2e2e2;
     background-color: white;
 }
+
+.light-theme .Menu-overlay {
+    background-color: #eaeaea;
+}
+
+.light-theme .Menu-overlay div {
+    color: #4d4d4d;
+}
+
+.light-theme .Switch-circle {
+    background-color: white;
+    border-color: #e8e8e8;
+}
+
+.light-theme .Switch-circle-content {
+    color: #808080;
+}
+
+.light-theme .MenuItem-title {
+    color: #313131;
+}

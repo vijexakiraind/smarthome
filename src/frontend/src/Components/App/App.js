@@ -1,5 +1,9 @@
 import React from 'react'
 
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as actionCreators from '../../Actions/'
+
 import Client from '../Client/Client'
 import Notification from '../Notificaton/Notification'
 import Menu from '../Menu/Menu'
@@ -76,4 +80,14 @@ class App extends React.Component {
     }
 }
 
-export default App;
+function mapStateToProps(AppState) {
+    return {
+        AppState
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(actionCreators, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

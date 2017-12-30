@@ -73,3 +73,7 @@ body.light-theme  {
 .light-theme .Switch-circle-content {
     color: #808080;
 }
+
+.light-theme .MenuItem-title {
+    color: #313131;
+}

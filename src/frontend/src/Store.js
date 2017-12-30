@@ -1,6 +1,5 @@
 import { createStore } from 'redux'
 
-import * as actionCreators from './Actions/'
 import rootReducer from './Reducers/'
 
 const defaultState =  { 

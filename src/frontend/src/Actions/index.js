@@ -1,5 +1,5 @@
-import axios from 'axios'
-import Store from '../Store'
+//import axios from 'axios'
+//import Store from '../Store'
 
 export function TestAction(msg) {
     return {

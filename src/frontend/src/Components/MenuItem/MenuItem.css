@@ -1,0 +1,11 @@
+.MenuItem {
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+}
+
+.MenuItem-title {
+    font-size: 20px;
+}

@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 
 import Switch from './../Switch/Switch'
+import MenuItem from './../MenuItem/MenuItem'
 
 import './Menu.css'
 import ic_settings from './../../Icons/ic_settings.svg'
@@ -125,7 +126,7 @@ export default class Menu extends React.Component {
                 this.props.setTheme(false)
                 break
             }
-            case 2: {
+            default: {
                 this.props.setAutoTheme(false)
                 this.props.setTheme(true)
                 break
@@ -170,12 +171,17 @@ export default class Menu extends React.Component {
                             <img src={this.state.opened ? f_ic_close : f_ic_settings} alt={'Settings'} />
                         </div>
                     </div>
-                    <Switch
-                        height={30}
-                        states={3}
-                        current={this.themeSelect()}
-                        onChange={c => this.setTheme(c)}
-                        content={this.themeSelect() === 0 ? 'A' : ''}
+                    <MenuItem
+                        title={'Theme colors'}
+                        ui={
+                        <Switch
+                            height={30}
+                            states={3}
+                            current={this.themeSelect()}
+                            onChange={c => this.setTheme(c)}
+                            content={this.themeSelect() === 0 ? 'A' : ''}
+                        />
+                        }
                     />
                 </div>
             </Fragment>

@@ -7,3 +7,10 @@ export function TestAction(msg) {
         payload: { msg }
     }
 }
+
+export function SetDarkTheme(dark) {
+    return {
+        type: 'SET_DARK_THEME',
+        payload: dark
+    }
+}

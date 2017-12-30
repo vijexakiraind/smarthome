@@ -70,3 +70,12 @@ body.dark-theme {
 .dark-theme .Menu-overlay div {
     color: #d6d6d6;
 }
+
+.dark-theme .Switch-circle {
+    background-color: #404040;
+    border-color: #404040;
+}
+
+.dark-theme .Switch-circle-content {
+    color: #eaeaea;
+}

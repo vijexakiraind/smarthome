@@ -14,3 +14,10 @@ export function SetDarkTheme(dark) {
         payload: dark
     }
 }
+
+export function SetAutoTheme(auto) {
+    return {
+        type: 'SET_AUTO_THEME',
+        payload: auto
+    }
+}

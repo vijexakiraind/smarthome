@@ -64,3 +64,12 @@ body.light-theme  {
 .light-theme .Menu-overlay div {
     color: #4d4d4d;
 }
+
+.light-theme .Switch-circle {
+    background-color: white;
+    border-color: #e8e8e8;
+}
+
+.light-theme .Switch-circle-content {
+    color: #808080;
+}

@@ -73,7 +73,12 @@ class App extends React.Component {
                     <Client />
                     <Client empty />
                 </div>
-                <Menu dark={darkTheme} />
+                <Menu
+                    dark={darkTheme}
+                    autoTheme={this.props.AppState.autoTheme}
+                    setTheme={this.props.SetDarkTheme}
+                    setAutoTheme={this.props.SetAutoTheme}
+                />
             </div>
         )
     }

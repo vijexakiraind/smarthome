@@ -8,6 +8,9 @@ const rootReducer = (state, { type, payload }) => {
         case 'SET_DARK_THEME': {
             return {...state, darkTheme: payload}
         }
+        case 'SET_AUTO_THEME': {
+            return {...state, autoTheme: payload}
+        }
         default: {
             return state
         }

@@ -1,0 +1,15 @@
+.Switch {
+
+}
+
+.Switch-circle {
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Switch-circle-content {
+    font-size: 10px;
+    font-weight: bold;
+}

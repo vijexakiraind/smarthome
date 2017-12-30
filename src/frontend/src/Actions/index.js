@@ -9,6 +9,7 @@ export function TestAction(msg) {
 }
 
 export function SetDarkTheme(dark) {
+    localStorage.setItem('darkTheme', dark.toString())
     return {
         type: 'SET_DARK_THEME',
         payload: dark
@@ -16,6 +17,7 @@ export function SetDarkTheme(dark) {
 }
 
 export function SetAutoTheme(auto) {
+    localStorage.setItem('autoTheme', auto.toString())
     return {
         type: 'SET_AUTO_THEME',
         payload: auto

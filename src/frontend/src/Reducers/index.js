@@ -11,6 +11,9 @@ const rootReducer = (state, { type, payload }) => {
         case 'SET_AUTO_THEME': {
             return {...state, autoTheme: payload}
         }
+        case 'SET_MY_LOCAL_IP': {
+            return {...state, myLocalIp: payload}            
+        }
         default: {
             return state
         }

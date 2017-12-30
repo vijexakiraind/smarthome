@@ -26,6 +26,14 @@
     border-radius: 15px;
 }
 
+.Menu-pull-tab-drag-area {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    height: 65px;
+    right: -51px;
+}
+
 .Menu-pull-tab-icon img {
     height: 30px;
     width: 30px;

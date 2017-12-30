@@ -167,6 +167,7 @@ export default class Menu extends React.Component {
                         onTouchEnd={this.pullEnd}
                         onClick={this.toggle}
                     >
+                        { !this.state.closed && <div className="Menu-pull-tab-drag-area"></div>}
                         <div className="Menu-pull-tab-icon">
                             <img src={this.state.opened ? f_ic_close : f_ic_settings} alt={'Settings'} />
                         </div>

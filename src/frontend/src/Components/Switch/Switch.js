@@ -2,14 +2,21 @@ import React from 'react'
 
 import './Switch.css'
 
+const border = 2
+
 export default class Switch extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
             selected: this.props.current,
-            direction: 1
+            direction: 1,
+            touch: null
         }
+
+        this.pull = this.pull.bind(this)
+        this.pullStart = this.pullStart.bind(this)
+        this.pullEnd = this.pullEnd.bind(this)
     }
 
     componentWillReceiveProps(newProps) {
@@ -55,14 +62,63 @@ export default class Switch extends React.Component {
             this.setState({ direction: -this.state.direction })
         }
 
+        navigator.vibrate(5)
         this.setState({ selected: newSel })
 
         this.props.onChange(newSel)
     }
 
-    render() {
-        const border = 2
+    moveLeft(newOrigin) {
+        const newSel = this.state.selected - 1
 
+        if(newSel >= 0) {
+            navigator.vibrate(5)
+            this.setState({ selected: newSel, touch: { x: newOrigin } })
+            this.props.onChange(newSel)
+        }
+    }
+
+    moveRight(newOrigin) {
+        const newSel = this.state.selected + 1
+
+        if(newSel < this.props.states) {
+            navigator.vibrate(5)
+            this.setState({ selected: newSel, touch: { x: newOrigin } })
+            this.props.onChange(newSel)
+        }
+    }
+
+    pullStart(e) {
+        if(!this.state.touch) {
+            this.setState({
+                touch: {
+                    x: e.changedTouches[0].screenX
+                }
+            })
+        }
+    }
+
+    pull(e) {
+        let delta = e.changedTouches[0].screenX - this.state.touch.x
+
+        const movedK = delta / ((this.props.height - 2*border) * 0.6) + this.state.selected
+
+        //console.log(movedK)
+        if(movedK > this.state.selected + 0.5) {
+            this.moveRight(e.changedTouches[0].screenX)
+        }
+        else if(movedK < this.state.selected - 0.5) {
+            this.moveLeft(e.changedTouches[0].screenX)
+        }
+    }
+
+    pullEnd() {
+        this.setState({
+            touch: null
+        })
+    }
+
+    render() {
         const { height, states } = this.props
         const innrHeight = height - 2*border
 
@@ -79,6 +135,9 @@ export default class Switch extends React.Component {
                     ...this.calcStyle()
                 }}
                 onClick={this.next.bind(this)}
+                onTouchStart={this.pullStart}
+                onTouchMove={this.pull}
+                onTouchEnd={this.pullEnd}
             >
                 <div
                 className="Switch-circle"

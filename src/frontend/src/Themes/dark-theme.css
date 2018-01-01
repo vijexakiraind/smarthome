@@ -71,6 +71,16 @@ body.dark-theme {
     color: #d6d6d6;
 }
 
+.dark-theme .Switch {
+    background-color: #272727;
+    border-color: #272727;
+}
+
+.dark-theme .Switch.on {
+    background-color: #64b649;
+    border-color: #64b649;
+}
+
 .dark-theme .Switch-circle {
     background-color: #404040;
     border-color: #404040;

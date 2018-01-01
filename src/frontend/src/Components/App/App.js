@@ -78,6 +78,9 @@ class App extends React.Component {
                     autoTheme={this.props.AppState.autoTheme}
                     setTheme={this.props.SetDarkTheme}
                     setAutoTheme={this.props.SetAutoTheme}
+
+                    autoIPs={this.props.AppState.autoIPs}
+                    setAutoIPs={this.props.SetAutoIPs}                
                 />
             </div>
         )

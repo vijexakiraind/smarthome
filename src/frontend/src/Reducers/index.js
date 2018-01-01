@@ -5,15 +5,21 @@ const rootReducer = (state, { type, payload }) => {
         case 'TEST_ACTION': {
             return {...state, msg: payload.msg}
         }
+
         case 'SET_DARK_THEME': {
             return {...state, darkTheme: payload}
         }
         case 'SET_AUTO_THEME': {
             return {...state, autoTheme: payload}
         }
+
         case 'SET_MY_LOCAL_IP': {
             return {...state, myLocalIp: payload}            
+        }        
+        case 'SET_AUTO_IP_CONFIG': {
+            return {...state, autoIPs: payload}  
         }
+
         default: {
             return state
         }

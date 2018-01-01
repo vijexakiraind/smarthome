@@ -11,6 +11,9 @@ const defaultState =  {
     autoTheme: localStorage.getItem('autoTheme') === null ? true
     : localStorage.getItem('autoTheme') === 'true' ? true : false,
 
+    autoIPs: localStorage.getItem('autoIPs') === null ? true
+    : localStorage.getItem('autoIPs') === 'true' ? true : false,
+
     myLocalIp: null
 }
 

@@ -23,3 +23,11 @@ export function SetAutoTheme(auto) {
         payload: auto
     }
 }
+
+export function SetAutoIPs(auto) {
+    localStorage.setItem('autoIPs', auto.toString())
+    return {
+        type: 'SET_AUTO_IP_CONFIG',
+        payload: auto
+    }
+}

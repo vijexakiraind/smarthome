@@ -134,6 +134,10 @@ export default class Menu extends React.Component {
         }
     }
 
+    setAutoIPs(i) {
+        this.props.setAutoIPs(i === 0 ? false : true)
+    }
+
     themeSelect() {
         if(this.props.autoTheme) return 0
         else if(this.props.dark) return 2
@@ -181,6 +185,18 @@ export default class Menu extends React.Component {
                             current={this.themeSelect()}
                             onChange={c => this.setTheme(c)}
                             content={this.themeSelect() === 0 ? 'A' : ''}
+                        />
+                        }
+                    />
+                    <MenuItem
+                        title={'Auto IP management'}
+                        ui={
+                        <Switch
+                            height={30}
+                            states={2}
+                            current={this.props.autoIPs ? 1 : 0}
+                            onChange={c => this.setAutoIPs(c)}
+                            content={this.props.autoIPs ? 'A' : 'M'}
                         />
                         }
                     />

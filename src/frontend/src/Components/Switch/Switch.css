@@ -1,5 +1,7 @@
 .Switch {
-
+    height: 26px;
+    border-radius: 15px;
+    border: 2px solid;
 }
 
 .Switch-circle {
@@ -7,6 +9,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform .2s ease;
+    height: 24px;
+    width: 24px;
+    border-radius: 13px;
 }
 
 .Switch-circle-content {

@@ -65,6 +65,16 @@ body.light-theme  {
     color: #4d4d4d;
 }
 
+.light-theme .Switch {
+    background-color: #eaeaea;
+    border-color: #eaeaea;
+}
+
+.light-theme .Switch.on {
+    background-color: #6eeb43;
+    border-color: #6eeb43;
+}
+
 .light-theme .Switch-circle {
     background-color: white;
     border-color: #e8e8e8;

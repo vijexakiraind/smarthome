@@ -23,34 +23,14 @@ export default class Switch extends React.Component {
         this.setState({ selected: newProps.current })
     }
 
-    calcStyle() {
+    calcClass() {
         if(this.props.states === 2) {
-            if(this.state.selected === 0)
-                return {
-                    borderColor: '#eaeaea',
-                    backgroundColor: '#eaeaea'
-                }
-            else
-                return {
-                    borderColor: '#6eeb43',
-                    backgroundColor: '#6eeb43'
-                }
+            if(this.state.selected === 0) return ''
+            else return ' on'
         }
         else {
-            if(this.state.selected === 0)
-                return {
-                    borderColor: '#6eeb43',
-                    backgroundColor: '#6eeb43'
-                }
-            else if(this.state.selected === 1)
-                return {
-                    borderColor: '#eaeaea',
-                    backgroundColor: '#eaeaea'
-                }
-            else return {
-                borderColor: '#272727',
-                backgroundColor: '#272727'
-            }
+            if(this.state.selected === 0) return ' on'
+            else return ''
         }
     }
 
@@ -101,9 +81,9 @@ export default class Switch extends React.Component {
     pull(e) {
         let delta = e.changedTouches[0].screenX - this.state.touch.x
 
-        const movedK = delta / ((this.props.height - 2*border) * 0.6) + this.state.selected
+        const magn = 2
+        const movedK = (1/magn) * delta / ((this.props.height - 2*border) * 0.6) + this.state.selected
 
-        //console.log(movedK)
         if(movedK > this.state.selected + 0.5) {
             this.moveRight(e.changedTouches[0].screenX)
         }
@@ -126,13 +106,9 @@ export default class Switch extends React.Component {
 
         return (
             <div
-                className="Switch"
+                className={'Switch' + this.calcClass()}
                 style={{
-                    height: innrHeight,
-                    width,
-                    borderRadius: height / 2,
-                    border: `${border}px solid`,
-                    ...this.calcStyle()
+                    width
                 }}
                 onClick={this.next.bind(this)}
                 onTouchStart={this.pullStart}
@@ -142,11 +118,7 @@ export default class Switch extends React.Component {
                 <div
                 className="Switch-circle"
                 style={{
-                    transition: 'transform .2s ease',
-                    transform: `translateX(${this.state.selected * innrHeight * 0.6}px)`,
-                    height: innrHeight - 2,
-                    width: innrHeight - 2,
-                    borderRadius: innrHeight / 2                   
+                    transform: `translateX(${this.state.selected * innrHeight * 0.6}px)`                
                 }}
                 >
                     <div className="Switch-circle-content">{this.props.content}</div>

@@ -17,6 +17,8 @@
     border-top-right-radius: 25px;
     border: 1px solid;
     border-bottom: none;
+    user-select: none;
+    cursor: pointer;
 }
 
 .Menu-pull-tab-icon {
@@ -44,6 +46,7 @@
     top: 0;
     height: 65px;
     width: 100%;
+    cursor: pointer;
 }
 
 .Menu-overlay div {
@@ -51,4 +54,5 @@
     font-size: 25px;
     line-height: 65px;
     font-weight: bold;
+    user-select: none;
 }

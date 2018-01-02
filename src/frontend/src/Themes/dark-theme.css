@@ -107,3 +107,7 @@ body.dark-theme {
 .dark-theme .IPSettings-input:focus {
     border-color: #006500;
 }
+
+.dark-theme .IPSettings-input.error {
+    border-color: #a70000;
+}

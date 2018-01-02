@@ -105,3 +105,7 @@ body.light-theme  {
 .light-theme .IPSettings-input:focus {
     border-color: #008000;
 }
+
+.light-theme .IPSettings-input.error {
+    border-color: red;
+}

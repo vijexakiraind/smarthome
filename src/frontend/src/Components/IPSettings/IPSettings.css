@@ -1,0 +1,22 @@
+.IPSettings {
+    padding: 0 15px;
+}
+
+.IPSettings-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.IPSettings-input {
+    font-size: 18px;
+    width: 136px;
+    padding: 4px;
+    margin-bottom: 10px;
+    border: 1px solid #b3b3b3;
+    outline: none;
+}
+
+.IPSettings-input:focus {
+    border-color: #008000;
+}

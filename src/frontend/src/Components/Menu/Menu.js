@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 
 import Switch from './../Switch/Switch'
 import MenuItem from './../MenuItem/MenuItem'
+import IPSettings from './../IPSettings/IPSettings'
 
 import './Menu.css'
 import ic_settings from './../../Icons/ic_settings.svg'
@@ -199,7 +200,9 @@ export default class Menu extends React.Component {
                             content={this.props.autoIPs ? 'A' : 'M'}
                         />
                         }
-                    />
+                    >
+                        { !this.props.autoIPs && <IPSettings /> }
+                    </MenuItem>
                 </div>
             </Fragment>
         )

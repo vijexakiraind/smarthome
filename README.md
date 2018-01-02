@@ -2,4 +2,4 @@
 
 Centralized system on several ESP8266's.
 
-Try it [here](https://goo.gl/fBjsck).
+Nothing works yet, but you can try it [here](https://goo.gl/fBjsck) ¯\\_(ツ)_/¯

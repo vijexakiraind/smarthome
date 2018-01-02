@@ -91,3 +91,17 @@ body.light-theme  {
 .light-theme .MenuItem-title {
     color: #313131;
 }
+
+.light-theme .IPSettings-label {
+    color: black;
+}
+
+.light-theme .IPSettings-input {
+    background-color: white;
+    border-color: #b3b3b3;
+    color: black;
+}
+
+.light-theme .IPSettings-input:focus {
+    border-color: #008000;
+}

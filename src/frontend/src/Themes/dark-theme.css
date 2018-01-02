@@ -93,3 +93,17 @@ body.dark-theme {
 .dark-theme .MenuItem-title {
     color: #dadada;
 }
+
+.dark-theme .IPSettings-label {
+    color: #dadada;
+}
+
+.dark-theme .IPSettings-input {
+    background-color: #181818;
+    border-color: #747474;
+    color: #e0e0e0;
+}
+
+.dark-theme .IPSettings-input:focus {
+    border-color: #006500;
+}

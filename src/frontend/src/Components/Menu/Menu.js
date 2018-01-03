@@ -28,6 +28,7 @@ export default class Menu extends React.Component {
             opened: false,
             closed: true,
             moveStart: null,
+            animated: false
         }
 
         window.addEventListener('resize', this.resize.bind(this))
@@ -91,20 +92,26 @@ export default class Menu extends React.Component {
 
     open() {
         this.setState({
+            animated: true,
             opened: true,
             closed: false,
             dPosY: -window.innerHeight + headerHeight,
             prevPosY: -window.innerHeight + headerHeight
         })
+
+        setTimeout(() => { this.setState({ animated: false }) }, 200)
     }
 
     close() {
         this.setState({
+            animated: true,
             closed: true,
             opened: false,
             dPosY: 0,
             prevPosY: 0
         })
+
+        setTimeout(() => { this.setState({ animated: false }) }, 200)
     }
 
     resize() {
@@ -151,7 +158,7 @@ export default class Menu extends React.Component {
 
         const overlayOpacity = -this.state.dPosY / (window.innerHeight - headerHeight)
         const transform = `translateY(${this.state.dPosY}px)`
-        const transition = (this.state.opened || this.state.closed) ? 'transform .2s ease-out' : ''
+        const transition = this.state.animated ? 'transform .2s ease-out' : ''
 
         return (
             <Fragment>

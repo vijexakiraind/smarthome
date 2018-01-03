@@ -3,6 +3,7 @@ import { createStore } from 'redux'
 import rootReducer from './Reducers/'
 
 import GetLocalIp from './Utils/GetLocalIp'
+import ScanForServer from './Utils/ScanForServer'
 
 const defaultState =  { 
     darkTheme: localStorage.getItem('darkTheme') === null ? false
@@ -22,6 +23,8 @@ const store = createStore(rootReducer, defaultState, window.__REDUX_DEVTOOLS_EXT
 GetLocalIp((err, ip) => {
     if(!err) {
         store.dispatch({ type: 'SET_MY_LOCAL_IP', payload: ip })
+
+        //ScanForServer(ip, (err, res) => console.log(err, res))
     }
 })
 

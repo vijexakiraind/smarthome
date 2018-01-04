@@ -9,7 +9,7 @@ if file.open("clients_datafile.json", "r") then
     local raw_data = file.read()
     file.close()
     -- cutting comments
-    raw_data = string.sub(raw_data, string.match(raw_data, "(#.-)%["):len()+1, raw_data:len())
+    raw_data = string.match(raw_data, "%[.+")
     clients_data = sjson.decode(raw_data)
 end
 
@@ -61,7 +61,7 @@ wifi.eventmon.register(wifi.eventmon.AP_STADISCONNECTED, wifi_ap_disconnect_even
 web_srv = net.createServer(net.TCP, 30)
 web_srv:listen(80, function(conn)
     -- filenames for response building (http headers + data)
-    local base_headers = "HTTP/1.1 200 OK\nCache-Control: no-cache\n"
+    local base_headers = "HTTP/1.1 200 OK\nCache-Control: no-cache\nContent-Type: "
     local content_type = {
         html = "text/html; charset=UTF-8",
         css = "text/css; charset=UTF-8",
@@ -77,48 +77,57 @@ web_srv:listen(80, function(conn)
     }
 
     local response = {}
-    local function make_response(filename)
-        print("File name "..filename)
-        local type
-        if filename=="/" then 
-            filename = "page.html"
+    local function make_api_response(request)
+        -- api call looks like /q/devices
+        request = string.match(request, "/q/(.+)")
+        response[1] = base_headers..content_type["json"].."\r\n\r\n"
+        local encoder
+        -- reading api
+        if (pcall(function() encoder = sjson.encoder(api_tables[request]) end)) then
+            print("Reading api")
+            response[2] = "{\"status\":\"ok\",\"data\":"
+            repeat
+                local chunk = encoder:read()
+                print(chunk)
+                table.insert(response, chunk)
+            until chunk ~= nil
+            table.insert(response, "}")
         else
-            filename = string.match(filename, "/(.+)")
-        end
-        type = string.match(filename, "%.(%a+)")
-        print(type)
-        -- making http headers and checking for bad request
-        if pcall(function() response[1] = base_headers..content_type[type].."\n\n" end) then
-            if file.open(filename, "rb") then
-                while file.seek(cur, 0) < file.stat(filename).size do
-                    table.insert(response, file.read(1024))
-                end
-                file.close()
-            end
-        -- parsing api calls
-        else
-            -- api call looks like q/devices
-            filename = string.match(filename, "q/(.+)")
-            response[1] = base_headers..content_type["json"].."\n\n"
-            local encoder
-            -- reading api
-            if (pcall(function() encoder = sjson.encoder(api_tables[filename]) end)) then
-                print("Reading api")
-                repeat
-                    local chunk = encoder:read()
-                    print(chunk)
-                    table.insert(response, chunk)
-                until chunk ~= nil
-            else
-                print("!!!Bad request: "..(filename or "nil"))
-            end
+            print("!!!Bad request: "..(request or "nil"))
+            table.insert(response, "{\"status\":\"bad request\"}")
         end
         return response
     end
 
     local function exec_api(data, request) 
-        if(request == "changedevices") then
-            
+        response[1] = base_headers..content_type["json"].."\r\n\r\n"
+        local function ok_response()
+            response[2] = "{\"status\":\"ok\"}"
+        end
+        local function bad_response(status)
+            response[2] = "{\"status\":\""..status.."\"}"
+        end
+
+        print(data)
+        data = string.match(data, "\r\n\r\n(.+)")
+        print("Data incoming: "..data)
+        local pcall_stat, err
+        if(request == "/r/changedevices") then
+            pcall_stat, err = pcall(function() 
+                clients_data = sjson.decode(data)
+                file.open("clients_datafile.json", "w+")
+                file.write(data)
+                file.close()
+            end)
+            print(pcall_stat, err)
+        else 
+            pcall_stat = false
+            err = "bad request"
+        end
+        if (pcall_stat) then
+            ok_response()
+        else
+            bad_response(err)
         end
     end
 
@@ -133,15 +142,17 @@ web_srv:listen(80, function(conn)
     conn:on("sent", send_response)
 
     conn:on("receive", function(sock, data)
-        local request_type = string.match(data, "%a+%s")
+        local request_type = string.match(data, "(%a+)%s")
         local request = string.match(data, "%s(/.-)%s")
-        local response 
-        print("STA web "..string.match(data, ".-/n"))
+        print("STA web "..string.match(data, "(.-)\n"))
+        print(request)
         if request_type == "GET" then
-            response = make_response(request)
+            make_api_response(request)
         elseif request_type == "POST" then
-            response = exec_api(data, request)
+            exec_api(data, request)
         end
-        send_response(sock, response)
+        send_response(sock)
     end)
 end)
+
+print("Memory available: "..node.heap())

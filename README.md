@@ -4,8 +4,9 @@ Centralized system on several ESP8266's.
 
 Nothing works yet, but you can try it [here](https://goo.gl/fBjsck) ¯\\_(ツ)_/¯
 
-
 ## Core http APIs
+
+### Devices
 
 #### GET: `/q/listdevices`
 
@@ -43,33 +44,6 @@ Get an array of all known devices. E. g.
                 "to": "bedroom-lamp-state"
             }
         ]
-    }
-]
-```
-
-#### GET: `/q/listvar`
-
-Get an array of all global variables. E. g.
-
-```
-[
-    {
-        "name": "bedroom-light-level",
-        "from": {
-            "id": 0,
-            "output": "brighness"
-        }
-    },
-    {
-        "name": "bedroom-lamp-state",
-        "from": {
-            "id": 1,
-            "output": "on"
-        },
-        "to": {
-            "id": 1,
-            "input: "on"
-        }
     }
 ]
 ```
@@ -125,6 +99,68 @@ Remove device from list & delete all dependencies on it
 }
 ```
 
+#### POST `/q/setdevice`
+
+Edit device data exept mac-address
+
+##### Post data:
+```
+{
+    "id": 2,
+    "title": "Light sensor in bedroom",
+    "class": "sensor",
+    "inputs": [],
+    "outputs: [
+        {
+            "name": "brightness",
+            "to": "bedroom-light-level"
+        }
+    ]
+}
+```
+##### Returned data:
+```
+{
+    "status": "success"
+}
+```
+##### or
+```
+{
+    "status": "error",
+    "decription": "no such id"
+}
+```
+
+### Global variables
+
+#### GET: `/q/listvar`
+
+Get an array of all global variables. E. g.
+
+```
+[
+    {
+        "name": "bedroom-light-level",
+        "from": {
+            "id": 0,
+            "output": "brighness"
+        }
+    },
+    {
+        "name": "bedroom-lamp-state",
+        "from": {
+            "id": 1,
+            "output": "on"
+        },
+        "to": {
+            "id": 1,
+            "input: "on"
+        }
+    }
+]
+```
+
 #### POST `/q/addvar`
 
 Add new variable to list
@@ -146,5 +182,54 @@ Add new variable to list
 {
     "status": "error",
     "decription": "already exists"
+}
+```
+
+#### POST `/q/removevar`
+
+Delete variable & all its connections
+
+##### Post data:
+```
+{
+    "name": "qwerty"
+}
+```
+##### Returned data:
+```
+{
+    "status": "success"
+}
+```
+##### or
+```
+{
+    "status": "error",
+    "decription": "no such var"
+}
+```
+
+#### POST `/q/setvar`
+
+Change variable value
+
+##### Post data:
+```
+{
+    "name": "qwerty",
+    "value": 0.19
+}
+```
+##### Returned data:
+```
+{
+    "status": "success"
+}
+```
+##### or
+```
+{
+    "status": "error",
+    "decription": "no such var"
 }
 ```

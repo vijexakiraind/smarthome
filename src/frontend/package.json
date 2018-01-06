@@ -2,7 +2,7 @@
   "name": "smarthome-frontend",
   "version": "0.1.0",
   "private": false,
-  "homepage": "http://vijexakiraind-smarthome.github.io/smarthome",
+  "homepage": "https://vijexakiraind.github.io/smarthome",
   "dependencies": {
     "axios": "^0.17.1",
     "react": "^16.2.0",

@@ -6,12 +6,66 @@ Nothing works yet, but you can try it [here](https://goo.gl/XWYDJH) ¯\\_(ツ)_/
 
 ## Core http APIs
 
+### UI Elements
+
+#### GET: `/q/listuis`
+
+Get an array of UI Elements
+
+##### Returned data:
+
+```
+[
+    {
+        "id": 0,
+        "title": "Lamp",
+        "type": "power-switch",
+        "connections": [
+            "bedroom-lamp-state"
+        ]
+    }
+]
+```
+
+#### POST: `/q/setuis`
+
+Set an array of UI Elements
+
+##### Post data:
+
+```
+[
+    {
+        "title": "Lamp",
+        "type": "power-switch",
+        "connections": [
+            "bedroom-lamp-state"
+        ]
+    }
+]
+```
+
+##### Returned data:
+```
+{
+    "status": "success"
+}
+```
+##### or
+```
+{
+    "status": "error",
+    "decription": "unknown type"
+}
+```
+
 ### Devices
 
 #### GET: `/q/listdevices`
 
-Get an array of all known devices. E. g.
+Get an array of all known devices
 
+##### Returned data:
 ```
 [
     {

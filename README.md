@@ -223,7 +223,7 @@ Edit device data except mac-address
 
 #### POST `/q/getdevice`
 
-Edit device data except mac-address
+Get one device data
 
 ##### Post data:
 ```

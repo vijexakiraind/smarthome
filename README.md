@@ -6,6 +6,87 @@ Nothing works yet, but you can try it [here](https://goo.gl/XWYDJH) ¯\\_(ツ)_/
 
 ## Core http APIs
 
+### Connection API
+
+#### GET: `/q/searchfordevices`
+
+Tries to find devices in local network
+
+##### Returned data:
+```
+{
+    "status": "success",
+    "data": [
+        {
+            "check_word": "lamp",
+            "ip": "192.168.1.100", 
+            "mac": "01:23:45:67:89:ab"
+        },
+        {
+            "check_word": "garland",
+            "ip": "192.168.1.123", 
+            "mac": "10:32:54:76:98:ba"
+        }
+    ]
+}
+```
+##### or
+```
+{
+    "status": "error",
+    "description": "devices not found"
+}
+```
+
+#### POST `/q/connectdevice`
+
+Add new device to the list and return id
+
+##### Post data:
+```
+{
+    "ip": "192.168.1.100"
+}
+```
+##### Returned data:
+```
+{
+    "status": "success",
+    "id": "2"
+}
+```
+##### or
+```
+{
+    "status": "error",
+    "description": "device do not respond"
+}
+```
+
+#### POST `/q/disconnectdevice`
+
+Remove device from list & delete all dependencies on it
+
+##### Post data:
+```
+{
+    "id": 2
+}
+```
+##### Returned data:
+```
+{
+    "status": "success"
+}
+```
+##### or
+```
+{
+    "status": "error",
+    "description": "no such id"
+}
+```
+
 ### UI Elements
 
 #### GET: `/q/listuis`
@@ -78,7 +159,7 @@ Get an array of all known devices
             "title": "Light sensor in bedroom",
             "class": "sensor",
             "inputs": [],
-            "outputs: [
+            "outputs": [
                 {
                     "name": "brightness",
                     "to": "bedroom-light-level"
@@ -96,7 +177,7 @@ Get an array of all known devices
                     "from": "bedroom-lamp-state"
                 }
             ],
-            "outputs: [
+            "outputs": [
                 {
                     "name": "on",
                     "to": "bedroom-lamp-state"
@@ -104,57 +185,6 @@ Get an array of all known devices
             ]
         }
     ]
-}
-```
-
-#### POST `/q/adddevice`
-
-Add a new device to list
-
-##### Post data:
-```
-{
-    "mac": "11:22:33:44",
-    "title": "Lamp at desktop",
-    "class": "light"
-}
-```
-##### Returned data:
-```
-{
-    "status": "success",
-    "id": "2"
-}
-```
-##### or
-```
-{
-    "status": "error",
-    "description": "invalid mac"
-}
-```
-
-#### POST `/q/removedevice`
-
-Remove device from list & delete all dependencies on it
-
-##### Post data:
-```
-{
-    "id": 2
-}
-```
-##### Returned data:
-```
-{
-    "status": "success"
-}
-```
-##### or
-```
-{
-    "status": "error",
-    "description": "no such id"
 }
 ```
 
@@ -181,6 +211,48 @@ Edit device data except mac-address
 ```
 {
     "status": "success"
+}
+```
+##### or
+```
+{
+    "status": "error",
+    "description": "no such id"
+}
+```
+
+#### POST `/q/getdevice`
+
+Edit device data except mac-address
+
+##### Post data:
+```
+{
+    "id": 2
+}
+```
+##### Returned data:
+```
+{
+    "status": "success",
+    "data": {
+        "id": 1,
+        "mac": "12:34:56:78:90:cd",
+        "title": "Lamp in bedroom",
+        "class": "light",
+        "inputs": [
+            {
+                "name": "on",
+                "from": "bedroom-lamp-state"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "on",
+                "to": "bedroom-lamp-state"
+            }
+        ]
+    }
 }
 ```
 ##### or

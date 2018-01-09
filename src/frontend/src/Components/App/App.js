@@ -80,7 +80,11 @@ class App extends React.Component {
                     setAutoTheme={this.props.SetAutoTheme}
 
                     autoIPs={this.props.AppState.autoIPs}
-                    setAutoIPs={this.props.SetAutoIPs}                
+                    setAutoIPs={this.props.SetAutoIPs}
+
+                    serverLocalIp={this.props.AppState.serverLocalIp}
+                    serverGlobalIp={this.props.AppState.serverGlobalIp}
+                    setServerLocalIp={this.props.SetServerLocalIp}
                 />
             </div>
         )

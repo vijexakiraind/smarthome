@@ -20,6 +20,10 @@ const rootReducer = (state, { type, payload }) => {
             return {...state, autoIPs: payload}  
         }
 
+        case 'SET_SERVER_LOCAL_IP': {
+            return {...state, serverLocalIp: payload}  
+        }
+
         default: {
             return state
         }

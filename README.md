@@ -57,7 +57,7 @@ Set an array of UI Elements
 ```
 {
     "status": "error",
-    "decription": "unknown type"
+    "description": "unknown type"
 }
 ```
 
@@ -130,7 +130,7 @@ Add a new device to list
 ```
 {
     "status": "error",
-    "decription": "invalid mac"
+    "description": "invalid mac"
 }
 ```
 
@@ -154,7 +154,7 @@ Remove device from list & delete all dependencies on it
 ```
 {
     "status": "error",
-    "decription": "no such id"
+    "description": "no such id"
 }
 ```
 
@@ -187,7 +187,7 @@ Edit device data except mac-address
 ```
 {
     "status": "error",
-    "decription": "no such id"
+    "description": "no such id"
 }
 ```
 
@@ -240,7 +240,7 @@ Add new variable to list
 ```
 {
     "status": "error",
-    "decription": "already exists"
+    "description": "already exists"
 }
 ```
 
@@ -264,7 +264,7 @@ Delete variable & all its connections
 ```
 {
     "status": "error",
-    "decription": "no such var"
+    "description": "no such var"
 }
 ```
 
@@ -289,6 +289,6 @@ Change variable value
 ```
 {
     "status": "error",
-    "decription": "invalid variable name"
+    "description": "invalid variable name"
 }
 ```

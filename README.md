@@ -19,7 +19,6 @@ Get an array of UI Elements
     "status": "success",
     "data": [
         {
-            "id": 0,
             "title": "Lamp",
             "type": "power-switch",
             "connections": [
@@ -39,7 +38,6 @@ Set an array of UI Elements
 ```
 [
     {
-        "id": 0,
         "title": "Lamp",
         "type": "power-switch",
         "connections": [
@@ -116,7 +114,6 @@ Add a new device to list
 ##### Post data:
 ```
 {
-    "id": "0",
     "mac": "11:22:33:44",
     "title": "Lamp at desktop",
     "class": "light"
@@ -125,7 +122,8 @@ Add a new device to list
 ##### Returned data:
 ```
 {
-    "status": "success"
+    "status": "success",
+    "id": "2"
 }
 ```
 ##### or

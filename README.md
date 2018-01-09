@@ -15,16 +15,19 @@ Get an array of UI Elements
 ##### Returned data:
 
 ```
-[
-    {
-        "id": 0,
-        "title": "Lamp",
-        "type": "power-switch",
-        "connections": [
-            "bedroom-lamp-state"
-        ]
-    }
-]
+{
+    "status": "success",
+    "data": [
+        {
+            "id": 0,
+            "title": "Lamp",
+            "type": "power-switch",
+            "connections": [
+                "bedroom-lamp-state"
+            ]
+        }
+    ]
+}
 ```
 
 #### POST: `/q/setuis`
@@ -36,6 +39,7 @@ Set an array of UI Elements
 ```
 [
     {
+        "id": 0,
         "title": "Lamp",
         "type": "power-switch",
         "connections": [
@@ -67,39 +71,42 @@ Get an array of all known devices
 
 ##### Returned data:
 ```
-[
-    {
-        "id": 0,
-        "mac": "01:23:45:67:89:ab",
-        "title": "Light sensor in bedroom",
-        "class": "sensor",
-        "inputs": [],
-        "outputs: [
-            {
-                "name": "brightness",
-                "to": "bedroom-light-level"
-            }
-        ]
-    },
-    {
-        "id": 1,
-        "mac": "12:34:56:78:90:cd",
-        "title": "Lamp in bedroom",
-        "class": "light",
-        "inputs": [
-            {
-                "name": "on",
-                "from": "bedroom-lamp-state"
-            }
-        ],
-        "outputs: [
-            {
-                "name": "on",
-                "to": "bedroom-lamp-state"
-            }
-        ]
-    }
-]
+{
+    "status": "success",
+    "data": [
+        {
+            "id": 0,
+            "mac": "01:23:45:67:89:ab",
+            "title": "Light sensor in bedroom",
+            "class": "sensor",
+            "inputs": [],
+            "outputs: [
+                {
+                    "name": "brightness",
+                    "to": "bedroom-light-level"
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "mac": "12:34:56:78:90:cd",
+            "title": "Lamp in bedroom",
+            "class": "light",
+            "inputs": [
+                {
+                    "name": "on",
+                    "from": "bedroom-lamp-state"
+                }
+            ],
+            "outputs: [
+                {
+                    "name": "on",
+                    "to": "bedroom-lamp-state"
+                }
+            ]
+        }
+    ]
+}
 ```
 
 #### POST `/q/adddevice`
@@ -109,6 +116,7 @@ Add a new device to list
 ##### Post data:
 ```
 {
+    "id": "0",
     "mac": "11:22:33:44",
     "title": "Lamp at desktop",
     "class": "light"
@@ -117,8 +125,7 @@ Add a new device to list
 ##### Returned data:
 ```
 {
-    "status": "success",
-    "id": 2
+    "status": "success"
 }
 ```
 ##### or
@@ -155,7 +162,7 @@ Remove device from list & delete all dependencies on it
 
 #### POST `/q/setdevice`
 
-Edit device data exept mac-address
+Edit device data except mac-address
 
 ##### Post data:
 ```
@@ -284,6 +291,6 @@ Change variable value
 ```
 {
     "status": "error",
-    "decription": "no such var"
+    "decription": "invalid variable name"
 }
 ```

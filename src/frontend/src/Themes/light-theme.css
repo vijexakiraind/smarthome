@@ -109,3 +109,11 @@ body.light-theme  {
 .light-theme .IPSettings-input.error {
     border-color: red;
 }
+
+.light-theme .PowerSwitch-svg {
+    fill: #eaeaea;
+}
+
+.light-theme .PowerSwitch-svg.on {
+    fill: #51cc47;
+}

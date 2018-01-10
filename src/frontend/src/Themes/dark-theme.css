@@ -111,3 +111,11 @@ body.dark-theme {
 .dark-theme .IPSettings-input.error {
     border-color: #a70000;
 }
+
+.dark-theme .PowerSwitch-svg {
+    fill: #636363;
+}
+
+.dark-theme .PowerSwitch-svg.on {
+    fill: #4bd63f;
+}

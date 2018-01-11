@@ -208,7 +208,13 @@ export default class Menu extends React.Component {
                         />
                         }
                     >
-                        { !this.props.autoIPs && <IPSettings /> }
+                        { !this.props.autoIPs &&
+                        <IPSettings
+                            serverLocalIp={this.props.serverLocalIp}
+                            serverGlobalIp={this.props.serverGlobalIp}
+
+                            setServerLocalIp={this.props.setServerLocalIp}
+                        /> }
                     </MenuItem>
                 </div>
             </Fragment>

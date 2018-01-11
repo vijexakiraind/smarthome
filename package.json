@@ -14,8 +14,13 @@
   },
   "author": "vijexa",
   "contributors": [
-    { "name": "kiraind", "email": "ne.eshte@otso.city" },
-    { "name": "vijexa" }
+    {
+      "name": "kiraind",
+      "email": "ne.eshte@otso.city"
+    },
+    {
+      "name": "vijexa"
+    }
   ],
   "license": "ISC",
   "bugs": {

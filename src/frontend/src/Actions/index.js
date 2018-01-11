@@ -31,3 +31,11 @@ export function SetAutoIPs(auto) {
         payload: auto
     }
 }
+
+export function SetServerLocalIp(ip) {
+    localStorage.setItem('serverLocalIp', ip)
+    return {
+        type: 'SET_SERVER_LOCAL_IP',
+        payload: ip
+    }
+}

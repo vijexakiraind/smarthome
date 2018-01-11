@@ -15,7 +15,13 @@ const defaultState =  {
     autoIPs: localStorage.getItem('autoIPs') === null ? true
     : localStorage.getItem('autoIPs') === 'true' ? true : false,
 
-    myLocalIp: null
+    myLocalIp: null,
+
+    serverLocalIp: localStorage.getItem('serverLocalIp') === null ? '192.168.1.10'
+    : localStorage.getItem('serverLocalIp'),
+
+    serverGlobalIp: localStorage.getItem('serverGlobalIp') === null ? null
+    : localStorage.getItem('serverGlobalIp')
 }
 
 const store = createStore(rootReducer, defaultState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())

@@ -43,14 +43,14 @@ GetLocalIp((err, ip) => {
 if(true) {
     store.dispatch(ActionCreators.AppendUis([
         {
-            "title": "Lamp",
+            "title": "Lamp in bedroom",
             "type": "power-switch",
             "connections": [
                 "bedroom-lamp-state"
             ]
         },
         {
-            "title": "Idk man",
+            "title": "Yet another lamp",
             "type": "power-switch",
             "connections": [
                 "other-lamp-state"

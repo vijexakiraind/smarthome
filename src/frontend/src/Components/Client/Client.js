@@ -30,7 +30,8 @@ export default class Client extends React.Component {
                 <div className="Client-body power-switch">
                     <UIControls
                         type={this.props.ui.type}
-                        value={false /* todo */ }
+                        values={this.props.values}
+                        setValue={this.props.setValue}
                     />
                 </div>
             </React.Fragment>

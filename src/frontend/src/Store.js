@@ -25,7 +25,9 @@ const defaultState =  {
     serverGlobalIp: localStorage.getItem('serverGlobalIp') === null ? null
     : localStorage.getItem('serverGlobalIp'),
 
-    uis: []
+    uis: [],
+    vars: [],
+    varvalues: {}
 }
 
 const store = createStore(rootReducer, defaultState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
@@ -51,10 +53,16 @@ if(true) {
             "title": "Idk man",
             "type": "power-switch",
             "connections": [
-                "whatever"
+                "other-lamp-state"
             ]
         }
     ]))
+
+    store.dispatch(ActionCreators.UpdateVars({
+        "bedroom-lamp-state": 0,
+        "other-lamp-state": 1,
+        "bedroom-light-level": 0
+    }))
 }
 
 export default store

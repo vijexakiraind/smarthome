@@ -12,7 +12,7 @@ export default class Client extends React.Component {
                     Empty slot
                 </div>
                 <div className="empty-Client-placeholder-ui">
-                    <a onClick={() => alert('fuck you')}>Connect new device</a>
+                    <a onClick={() => alert('nope')}>Add new controls</a>
                 </div>
             </div>
             :

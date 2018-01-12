@@ -68,9 +68,7 @@ class App extends React.Component {
             <div className="App">
                 { this.state.notifications }
                 <div className="clients-container">
-                    <Client />
-                    <Client />
-                    <Client />
+                    { this.props.AppState.uis.map((ui, i) => <Client key={i} ui={ui} setVar={console.log} />) }
                     <Client empty />
                 </div>
                 <Menu

@@ -39,3 +39,10 @@ export function SetServerLocalIp(ip) {
         payload: ip
     }
 }
+
+export function AppendUis(uis) {
+    return { 
+        type: 'APPEND_UIS',
+        payload: uis
+    }
+}

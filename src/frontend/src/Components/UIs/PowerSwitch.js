@@ -6,8 +6,8 @@ const PowerSwitch = ({ on, onChange }) => {
     const id2 = (Math.trunc(Math.random() * 10000000)).toString(36)
 
     const click = () => {
-        console.log( navigator.vibrate(15) )
-        onChange(!on)
+        navigator.vibrate(15)
+        onChange(0, (on === 0) ? 1 : 0)
     }
 
     return(

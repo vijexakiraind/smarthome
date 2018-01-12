@@ -267,8 +267,9 @@ Get one device data
 
 #### GET: `/q/listvar`
 
-Get an array of all global variables. E. g.
+Get an array of all global variables
 
+##### Returned data:
 ```
 [
     {
@@ -286,10 +287,22 @@ Get an array of all global variables. E. g.
         },
         "to": {
             "id": 1,
-            "input: "on"
+            "input": "on"
         }
     }
 ]
+```
+
+#### GET: `/q/getvars`
+
+Get an object with global var`s values
+
+##### Returned data:
+```
+{
+    "bedroom-lamp-state": 0,
+    "bedroom-light-level": 0
+}
 ```
 
 #### POST `/q/addvar`

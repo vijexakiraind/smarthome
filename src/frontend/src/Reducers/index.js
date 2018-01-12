@@ -24,6 +24,25 @@ const rootReducer = (state, { type, payload }) => {
             return {...state, serverLocalIp: payload}  
         }
 
+
+        case 'APPEND_UIS': {
+            return {...state, uis: [...state.uis, ...payload]} 
+        }
+
+        case 'UPDATE_VARS': {
+            return {...state, varvalues: payload }
+        }
+
+        case 'SET_VAR_VALUE': {
+            return {
+                ...state,
+                varvalues: {
+                    ...state.varvalues,
+                    [payload.name]: payload.value
+                }
+            }
+        }
+
         default: {
             return state
         }

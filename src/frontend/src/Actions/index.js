@@ -39,3 +39,25 @@ export function SetServerLocalIp(ip) {
         payload: ip
     }
 }
+
+export function AppendUis(uis) {
+    return { 
+        type: 'APPEND_UIS',
+        payload: uis
+    }
+}
+
+export function UpdateVars(varvalues) {
+    return { 
+        type: 'UPDATE_VARS',
+        payload: varvalues
+    }
+}
+
+export function SetVarValue(varName, value) {
+    // TODO
+    return {
+        type: 'SET_VAR_VALUE',
+        payload: { name: varName, value }
+    }
+}

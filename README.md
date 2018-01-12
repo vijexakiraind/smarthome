@@ -30,13 +30,6 @@ Tries to find devices in local network
     ]
 }
 ```
-##### or
-```
-{
-    "status": "error",
-    "description": "devices not found"
-}
-```
 
 #### POST `/q/connectdevice`
 
@@ -59,7 +52,7 @@ Add new device to the list and return id
 ```
 {
     "status": "error",
-    "description": "device do not respond"
+    "description": "device didn't respond"
 }
 ```
 

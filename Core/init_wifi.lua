@@ -2,14 +2,9 @@
 dofile("credentials.lua")
 
 function startup()
-    if file.open("init.lua") == nil then
-        print("init.lua deleted or renamed")
-    else
-        print("Starting app...")
-        file.close("init.lua")
-        -- the actual application is stored in 'application.lua'
-        dofile("application.lua")
-    end
+  print("Starting app...")
+  -- the actual application is stored in 'application.lua'
+  dofile("application.lua")
 end
 
 -- Define WiFi station event callbacks 
@@ -23,9 +18,9 @@ wifi_got_ip_event = function(T)
   -- Note: Having an IP address does not mean there is internet access!
   -- Internet connectivity can be determined with net.dns.resolve().    
   print("Wifi connection is ready! IP address is: "..T.IP)
-  print("Startup will resume momentarily, you have 4 seconds to abort.")
+  print("Startup will resume momentarily, you have 1 second to abort.")
   print("Waiting...") 
-  tmr.create():alarm(4000, tmr.ALARM_SINGLE, startup)
+  tmr.create():alarm(1000, tmr.ALARM_SINGLE, startup)
 end
 
 wifi_disconnect_event = function(T)
@@ -37,8 +32,6 @@ wifi_disconnect_event = function(T)
   local total_tries = 75
   print("\nWiFi connection to AP("..T.SSID..") has failed!")
 
-  --There are many possible disconnect reasons, the following iterates through 
-  --the list and returns the string corresponding to the disconnect reason.
   for key,val in pairs(wifi.eventmon.reason) do
     if val == T.reason then
       print("Disconnect reason: "..val.."("..key..")")
@@ -66,8 +59,5 @@ wifi.eventmon.register(wifi.eventmon.STA_GOT_IP, wifi_got_ip_event)
 wifi.eventmon.register(wifi.eventmon.STA_DISCONNECTED, wifi_disconnect_event)
 
 print("Connecting to WiFi access point: "..sta_cred["ssid"])
-wifi.setmode(wifi.STATIONAP)
+wifi.setmode(wifi.STATION)
 wifi.sta.config(sta_cred)
-print("Creating WiFi network: "..ap_cred["ssid"])
-wifi.ap.config(ap_cred)
--- wifi.sta.connect() not necessary because config() uses auto-connect=true by default

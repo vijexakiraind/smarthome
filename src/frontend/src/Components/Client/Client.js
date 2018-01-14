@@ -12,25 +12,26 @@ export default class Client extends React.Component {
                     Empty slot
                 </div>
                 <div className="empty-Client-placeholder-ui">
-                    <a onClick={() => alert('fuck you')}>Connect new device</a>
+                    <a onClick={() => alert('nope')}>Add new controls</a>
                 </div>
             </div>
             :
             <React.Fragment>
                 <div className="Client-header">
                     <div className="Client-title">
-                        Люстрация
+                        { this.props.ui.title }
                     </div>
                     <div className="Client-actions">
                         <div className="Client-edit" onClick={() => alert('?')}>
-                            (edit) { /* <!-- todo icon --> */ }
+                            (edit) { /* todo icon */ }
                         </div>
                     </div>
                 </div>
                 <div className="Client-body power-switch">
                     <UIControls
-                        type={'power-switch'}
-                        value={false /* todo */ }
+                        type={this.props.ui.type}
+                        values={this.props.values}
+                        setValue={this.props.setValue}
                     />
                 </div>
             </React.Fragment>

@@ -30,13 +30,6 @@ Tries to find devices in local network
     ]
 }
 ```
-##### or
-```
-{
-    "status": "error",
-    "description": "devices not found"
-}
-```
 
 #### POST `/q/connectdevice`
 
@@ -59,7 +52,7 @@ Add new device to the list and return id
 ```
 {
     "status": "error",
-    "description": "device do not respond"
+    "description": "device didn't respond"
 }
 ```
 
@@ -267,8 +260,9 @@ Get one device data
 
 #### GET: `/q/listvar`
 
-Get an array of all global variables. E. g.
+Get an array of all global variables
 
+##### Returned data:
 ```
 [
     {
@@ -286,10 +280,22 @@ Get an array of all global variables. E. g.
         },
         "to": {
             "id": 1,
-            "input: "on"
+            "input": "on"
         }
     }
 ]
+```
+
+#### GET: `/q/getvars`
+
+Get an object with global var`s values
+
+##### Returned data:
+```
+{
+    "bedroom-lamp-state": 0,
+    "bedroom-light-level": 0
+}
 ```
 
 #### POST `/q/addvar`

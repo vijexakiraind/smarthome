@@ -5,6 +5,8 @@ import rootReducer from './Reducers/'
 import GetLocalIp from './Utils/GetLocalIp'
 import ScanForServer from './Utils/ScanForServer'
 
+import * as ActionCreators from './Actions/'
+
 const defaultState =  { 
     darkTheme: localStorage.getItem('darkTheme') === null ? false
     : localStorage.getItem('darkTheme') === 'true' ? true : false,
@@ -21,7 +23,11 @@ const defaultState =  {
     : localStorage.getItem('serverLocalIp'),
 
     serverGlobalIp: localStorage.getItem('serverGlobalIp') === null ? null
-    : localStorage.getItem('serverGlobalIp')
+    : localStorage.getItem('serverGlobalIp'),
+
+    uis: [],
+    vars: [],
+    varvalues: {}
 }
 
 const store = createStore(rootReducer, defaultState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
@@ -33,5 +39,30 @@ GetLocalIp((err, ip) => {
         //ScanForServer(ip, (err, res) => console.log(err, res))
     }
 })
+
+if(true) {
+    store.dispatch(ActionCreators.AppendUis([
+        {
+            "title": "Lamp in bedroom",
+            "type": "power-switch",
+            "connections": [
+                "bedroom-lamp-state"
+            ]
+        },
+        {
+            "title": "Yet another lamp",
+            "type": "power-switch",
+            "connections": [
+                "other-lamp-state"
+            ]
+        }
+    ]))
+
+    store.dispatch(ActionCreators.UpdateVars({
+        "bedroom-lamp-state": 0,
+        "other-lamp-state": 1,
+        "bedroom-light-level": 0
+    }))
+}
 
 export default store

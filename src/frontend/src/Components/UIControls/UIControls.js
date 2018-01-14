@@ -9,22 +9,27 @@ export default class UIControls extends React.Component {
         super(props)
 
         this.state = {
-            value: this.props.value
+            values: this.props.values
         }
 
         this.onChange = this.onChange.bind(this)
     }
 
-    onChange(value) {
+    onChange(i, value) {
+        this.props.setValue(i, value)
+
+        const newValues = [...this.props.values]
+        newValues[i] = value
+
         this.setState({
-            value
+            values: newValues
         })
     }
 
     render() {
         if(this.props.type === 'power-switch')
             return (
-                <PowerSwitch on={this.state.value} onChange={this.onChange} />
+                <PowerSwitch on={this.state.values[0]} onChange={this.onChange} />
             )
     }
 }

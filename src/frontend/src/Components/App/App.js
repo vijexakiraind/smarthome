@@ -51,7 +51,8 @@ class App extends React.Component {
     }
 
     render() {
-        const { darkTheme } = this.props.AppState
+        const { AppState } = this.props
+        const { darkTheme } = AppState
 
         if(darkTheme) {
             document.body.classList.add('dark-theme')
@@ -68,22 +69,28 @@ class App extends React.Component {
             <div className="App">
                 { this.state.notifications }
                 <div className="clients-container">
-                    <Client />
-                    <Client />
-                    <Client />
+                    {
+                        AppState.uis.map((ui, i) =>
+                        <Client
+                            key={i}
+                            ui={ui}
+                            values={ui.connections.map(varName => AppState.varvalues[varName])}
+                            setValue={(i, value) => this.props.SetVarValue(ui.connections[i], value)}
+                        />)
+                    }
                     <Client empty />
                 </div>
                 <Menu
                     dark={darkTheme}
-                    autoTheme={this.props.AppState.autoTheme}
+                    autoTheme={AppState.autoTheme}
                     setTheme={this.props.SetDarkTheme}
                     setAutoTheme={this.props.SetAutoTheme}
 
-                    autoIPs={this.props.AppState.autoIPs}
+                    autoIPs={AppState.autoIPs}
                     setAutoIPs={this.props.SetAutoIPs}
 
-                    serverLocalIp={this.props.AppState.serverLocalIp}
-                    serverGlobalIp={this.props.AppState.serverGlobalIp}
+                    serverLocalIp={AppState.serverLocalIp}
+                    serverGlobalIp={AppState.serverGlobalIp}
                     setServerLocalIp={this.props.SetServerLocalIp}
                 />
             </div>

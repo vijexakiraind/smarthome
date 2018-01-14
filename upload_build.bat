@@ -40,8 +40,6 @@ if "%3"=="/f" set resultf=true
 if "%4"=="/f" set resultf=true
 if %resultf%==true (
     node "%~dp0node_modules\nodemcu-tool\bin\nodemcu-tool.js" -p %1 -b 115200 mkfs --noninteractive
-) else (
-    node "%~dp0node_modules\nodemcu-tool\bin\nodemcu-tool.js" -p %1 -b 115200 mkfs 
 )
 echo Uploading...
 for /r "%~dp0\build_temp" %%i in (*.lua *.png *.html *.json) do (

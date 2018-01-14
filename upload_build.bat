@@ -10,6 +10,7 @@ if %result1%==true (
     EXIT /b
 )
 xcopy /s /y /q "%~dp0src\common" "%~dp0build_temp\"
+set results=false
 if "%2"=="/s" set results=true
 if "%3"=="/s" set results=true
 if "%4"=="/s" set results=true
@@ -24,7 +25,7 @@ if "%3"=="/c" set resultc=true
 if "%4"=="/c" set resultc=true
 if %resultc%==true (
     for /r "%~dp0\build_temp" %%i in (*.lua) do (
-        node luatolc.js "%%i"
+        node build\luatolc.js "%%i"
     )
 )
 node "%~dp0node_modules\nodemcu-tool\bin\nodemcu-tool.js" -p %1 -b 115200 reset

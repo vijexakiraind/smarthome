@@ -8,7 +8,7 @@ if %result1%==true (
     echo Type COM port number in the first argument ^( COM3 for example ^)
     EXIT /b
 )
-xcopy /s /y /q "%~dp0Core" "%~dp0build_temp\"
+xcopy /s /y /q "%~dp0src\core" "%~dp0build_temp\"
 set resultc=false
 if "%2"=="/c" set resultc=true
 if "%3"=="/c" set resultc=true

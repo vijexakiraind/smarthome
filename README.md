@@ -45,14 +45,20 @@ Add new device to the list and return id
 ```
 {
     "status": "success",
-    "id": "2"
+    "status_code": "200",
+    "slave_version":"1.0.0",
+    "data": {
+        "id": "2",
+        "mac": "01:23:45:67:89:0a",
+        "code_word": "bacon pancakes"
+    }
 }
 ```
 ##### or
 ```
 {
     "status": "error",
-    "description": "device didn't respond"
+    "status_code": "device didn't respond"
 }
 ```
 

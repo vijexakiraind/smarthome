@@ -3,13 +3,15 @@ import React from 'react'
 import './UIControls.css'
 
 import PowerSwitch from '../UIs/PowerSwitch'
+import Slider from '../UIs/Slider'
 
 export default class UIControls extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            values: this.props.values
+            values: this.props.values,
+            test: 0
         }
 
         this.onChange = this.onChange.bind(this)
@@ -30,6 +32,10 @@ export default class UIControls extends React.Component {
         if(this.props.type === 'power-switch')
             return (
                 <PowerSwitch on={this.state.values[0]} onChange={this.onChange} />
+            )
+        if(this.props.type === 'slider')
+            return (
+                <Slider val={this.state.test} onChange={this.onChange} />
             )
     }
 }

@@ -11,6 +11,16 @@
   justify-content: center;
 }
 
+@media (min-width: 1250px) {
+  .Client {
+    margin-right: 16.666px
+  }
+
+  .Client:nth-child(4n) {
+    margin-right: 0;
+  }
+}
+
 @media (max-width: 1250px) {
   .Client {
     margin-right: 10px;
@@ -19,8 +29,14 @@
 
 @media (max-width: 980px) {
   .Client {
-    width: 100%;
+    width: calc(50% - 33.33px);
     margin-right: 0;
+  }
+}
+
+@media (max-width: 800px) {
+  .Client {
+    width: 100%;
   }
 }
 

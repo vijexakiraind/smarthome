@@ -55,6 +55,13 @@ if(true) {
             "connections": [
                 "other-lamp-state"
             ]
+        },
+        {
+            "title": "Ладно, это член",
+            "type": "slider",
+            "connections": [
+                "other-lamp-state"
+            ]
         }
     ]))
 

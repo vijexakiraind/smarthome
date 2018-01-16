@@ -10,6 +10,9 @@ const r = 435
 const cX = 650
 const cY = 582
 
+const zones = 10
+const zoneSize = (maxAn - minAn) / zones
+
 class PowerSwitch extends React.Component {
     constructor(props) {
         super(props)
@@ -18,7 +21,8 @@ class PowerSwitch extends React.Component {
             start: null,
             delta: { x: 0, y: 0 },
             val: this.props.val,
-            angle: this.props.val * (maxAn - minAn) + minAn
+            angle: this.props.val * (maxAn - minAn) + minAn,
+            zone: NaN
         }
 
         this.touchStart = this.touchStart.bind(this)
@@ -61,12 +65,18 @@ class PowerSwitch extends React.Component {
         if(newAngle < minAn)
             newAngle = minAn
 
+        const newZone = Math.trunc((newAngle - minAn) / zoneSize)
+        
+        if(newZone !== this.state.zone)
+            navigator.vibrate(5)
+
         this.setState({
             delta: {
                 x: deltaX,
                 y: deltaY
             },
-            angle: newAngle
+            angle: newAngle,
+            zone: newZone
         })
     }
 

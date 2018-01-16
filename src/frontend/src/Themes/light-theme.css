@@ -127,3 +127,37 @@ body.light-theme  {
     stroke: #d4d4d4;
     stroke-width: 2;
 }
+
+.light-theme .Slider-indicator.step0 {
+    fill: #eaeaea;
+}
+.light-theme .Slider-indicator.step1 {
+    fill: #dbe7da;
+}
+.light-theme .Slider-indicator.step2 {
+    fill: #cbe4c9;
+}
+.light-theme .Slider-indicator.step3 {
+    fill: #bce1b9;
+}
+.light-theme .Slider-indicator.step4 {
+    fill: #addea9;
+}
+.light-theme .Slider-indicator.step5 {
+    fill: #9edb99;
+}
+.light-theme .Slider-indicator.step6 {
+    fill: #8ed888;
+}
+.light-theme .Slider-indicator.step7 {
+    fill: #7fd578;
+}
+.light-theme .Slider-indicator.step8 {
+    fill: #70d268;
+}
+.light-theme .Slider-indicator.step9 {
+    fill: #60cf57;
+}
+.light-theme .Slider-indicator.step10 {
+    fill: #51cc47;
+}

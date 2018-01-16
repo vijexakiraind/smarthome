@@ -117,3 +117,13 @@ body.light-theme  {
 .light-theme .PowerSwitch-svg.on {
     fill: #51cc47;
 }
+
+.light-theme .Slider-track {
+    fill: #eaeaea;
+}
+
+.light-theme .Slider-button-visible {
+    fill: white;
+    stroke: #d4d4d4;
+    stroke-width: 2;
+}

@@ -119,3 +119,13 @@ body.dark-theme {
 .dark-theme .PowerSwitch-svg.on {
     fill: #4bd63f;
 }
+
+.dark-theme .Slider-track {
+    fill: #636363;
+}
+
+.dark-theme .Slider-button-visible {
+    fill: rgb(78, 78, 78);
+    stroke: #6e6e6e;
+    stroke-width: 2;
+}

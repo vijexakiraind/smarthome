@@ -131,7 +131,12 @@ class PowerSwitch extends React.Component {
                     opacity="0"
                     cx={fingerX}
                     cy={fingerY}
-                    r="90"></circle>
+                    r="90"
+                ></circle>
+
+                <text x="425" y="613" fontSize="50" fill="#9e9e9e" fontWeight="bold">
+                    {Math.round(100 * (this.state.angle - minAn) / (maxAn - minAn))}%
+                </text>
 
                 { /*
                 <circle fill="green" opacity="0.7" cx={cX} cy={cY} r="15"></circle>

@@ -1,3 +1,11 @@
 .Slider {
     touch-action: none;
 }
+
+.Slider-button {
+    cursor: pointer;
+}
+
+.Slider-button:active {
+    cursor: all-scroll;
+}

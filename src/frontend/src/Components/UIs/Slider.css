@@ -2,8 +2,19 @@
     touch-action: none;
 }
 
+.Slider-overlay {
+    position: absolute;
+    width: 270px;
+    height: 270px;
+}
+
 .Slider-button {
     cursor: pointer;
+    touch-action: none;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    position: relative;
 }
 
 .Slider-button:active {

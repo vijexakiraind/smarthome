@@ -119,3 +119,47 @@ body.dark-theme {
 .dark-theme .PowerSwitch-svg.on {
     fill: #4bd63f;
 }
+
+.dark-theme .Slider-track {
+    fill: #636363;
+}
+
+.dark-theme .Slider-button-visible {
+    fill: rgb(78, 78, 78);
+    stroke: #6e6e6e;
+    stroke-width: 2;
+}
+
+.dark-theme .Slider-indicator.step0 {
+    fill: #636363;
+}
+.dark-theme .Slider-indicator.step1 {
+    fill: #616f5f;
+}
+.dark-theme .Slider-indicator.step2 {
+    fill: #5e7a5c;
+}
+.dark-theme .Slider-indicator.step3 {
+    fill: #5c8658;
+}
+.dark-theme .Slider-indicator.step4 {
+    fill: #599155;
+}
+.dark-theme .Slider-indicator.step5 {
+    fill: #579d51;
+}
+.dark-theme .Slider-indicator.step6 {
+    fill: #55a84d;
+}
+.dark-theme .Slider-indicator.step7 {
+    fill: #52b44a;
+}
+.dark-theme .Slider-indicator.step8 {
+    fill: #50bf46;
+}
+.dark-theme .Slider-indicator.step9 {
+    fill: #4dcb43;
+}
+.dark-theme .Slider-indicator.step10 {
+    fill: #4bd63f;
+}

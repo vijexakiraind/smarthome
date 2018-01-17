@@ -1,6 +1,12 @@
 -- load credentials, 'SSID' and 'PASSWORD' declared and initialize in there
 dofile("credentials.lua")
 
+dofile("http_headers.lua")
+
+dofile("api_common.lua")
+
+dofile("api_core.lua")
+
 function startup()
   print("Starting app...")
   -- the actual application is stored in 'application.lua'

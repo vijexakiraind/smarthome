@@ -1,7 +1,7 @@
 export default function HslToRgba(h, s, l){
     var r, g, b;
 
-    if(s == 0){
+    if(s === 0){
         r = g = b = l; // achromatic
     } else {
         var hue2rgb = function hue2rgb(p, q, t){

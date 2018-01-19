@@ -1,0 +1,12 @@
+.Hsl-empty {
+    height: 20px;
+}
+
+.Hsl-hue-container {
+    height: 30px;
+    width: 270px;
+}
+
+.Hsl-canvas {
+    border: 1px solid #d6d6d6;
+}

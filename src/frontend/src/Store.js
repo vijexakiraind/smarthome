@@ -50,17 +50,17 @@ if(true) {
             ]
         },
         {
-            "title": "Yet another lamp",
-            "type": "power-switch",
+            "title": "Computer desk rgb",
+            "type": "hsl",
             "connections": [
                 "other-lamp-state"
             ]
         },
         {
-            "title": "Ладно, это член",
+            "title": "Lights in livingroom",
             "type": "slider",
             "connections": [
-                "other-lamp-state"
+                "livingroom-lamp-state"
             ]
         }
     ]))

@@ -1,0 +1,56 @@
+.Hsl-empty {
+    height: 20px;
+}
+
+.Hsl-hue-container {
+    height: 30px;
+    width: 270px;
+}
+
+.Hsl-hue-palet {
+    height: 16px;
+    width: 270px;
+    background: linear-gradient(
+        left,
+        #e1451d 0,
+        #fdff47 17%,
+        #86f9fe 50%,
+        #2900f8 65%,
+        #6e00f8 74%,
+        #e33df9 83%,
+        #e14423 100%
+    );
+    border: 1px solid #d6d6d6;
+    border-radius: 2px;
+    transform: translateY(2px);
+    z-index: 2;
+}
+
+.Hsl-hue {
+    position: absolute;
+    border-radius: 2px;
+    height: 20px;
+    width: 12px;
+    border: 1px solid #eaeaea;
+    background-color: white;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.Hsl-hue-area {
+    height: 50px;
+    width: 54px;
+    position: absolute;
+    top: -14px;
+    left: -20px;
+    touch-action: none;
+}
+
+.Hsl-hue:active {
+    cursor: move;
+}
+
+.Hsl-canvas {
+    border: 1px solid #d6d6d6;
+    border-radius: 2px;
+}

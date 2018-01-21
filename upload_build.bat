@@ -56,7 +56,7 @@ for /r "%~dp0\build_temp" %%i in (*.lua *.png *.html *.json) do (
         )
     )
 )
-rmdir /s /q "build_temp"
+rmdir /s /q "%~dp0\build_temp"
 node "%~dp0node_modules\nodemcu-tool\bin\nodemcu-tool.js" -p %1 -b 115200 fsinfo
 node "%~dp0node_modules\nodemcu-tool\bin\nodemcu-tool.js" -p %1 -b 115200 reset
 node "%~dp0node_modules\nodemcu-tool\bin\nodemcu-tool.js" -p %1 -b 115200 terminal

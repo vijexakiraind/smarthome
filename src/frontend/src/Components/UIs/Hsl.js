@@ -10,8 +10,14 @@ export default class Hsl extends React.Component {
         
         this.state = {
             hue: 0,
+            saturation: 1,
+            lightness: 1,
             hueStart: null
         }
+
+        this.mainTouchStart = this.mainTouchStart.bind(this)
+        this.mainTouchMove = this.mainTouchMove.bind(this)
+        this.mainTouchEnd = this.mainTouchEnd.bind(this)
 
         this.hueTouchStart = this.hueTouchStart.bind(this)
         this.hueTouchMove = this.hueTouchMove.bind(this)
@@ -35,6 +41,65 @@ export default class Hsl extends React.Component {
             }
         
         this.ctx.putImageData(this.imData, 0, 0)
+    }
+
+    mainTouchStart(e) {
+        navigator.vibrate(5)
+        this.setState({
+            mainStart: {
+                x: (~e.type.indexOf('mouse') !== 0 ? e.clientX : e.changedTouches[0].clientX),
+                y: (~e.type.indexOf('mouse') !== 0 ? e.clientY : e.changedTouches[0].clientY)
+            }
+        })
+
+        if(~e.type.indexOf('mouse') !== 0) {
+            document.body.addEventListener('mousemove', this.mainTouchMove)
+            document.body.addEventListener('mouseup', this.mainTouchEnd)
+        }
+    }
+
+    mainTouchMove(e) {
+        const fingerX = (~e.type.indexOf('mouse') !== 0 ? e.clientX : e.changedTouches[0].clientX)
+        const fingerY = (~e.type.indexOf('mouse') !== 0 ? e.clientY : e.changedTouches[0].clientY)
+
+        const deltaPxX = fingerX - this.state.mainStart.x
+        const deltaPxY = fingerY - this.state.mainStart.y
+
+        let newSatVal = this.state.saturation + deltaPxX / 244
+        let newLitVal = this.state.lightness + deltaPxY / 194
+
+        if(newSatVal > 1)
+            newSatVal = 1
+        else if(newSatVal < 0)
+            newSatVal = 0
+
+        if(newLitVal > 1)
+            newLitVal = 1
+        else if(newLitVal < 0)
+            newLitVal = 0
+    
+        if(this.state.saturation !== newSatVal ||
+            this.state.lightness !== newLitVal)
+            this.setState({
+                saturation: newSatVal,
+                lightness: newLitVal,
+                mainStart: {
+                    x: fingerX,
+                    y: fingerY
+                }
+            })
+    }
+
+    mainTouchEnd(e) {
+        navigator.vibrate(5)
+        this.setState({
+            mainStart: null
+        })
+
+        if(~e.type.indexOf('mouse') !== 0) {
+            document.body.removeEventListener('mousemove', this.mainTouchMove)
+            document.body.removeEventListener('mouseup', this.mainTouchEnd)
+        }
     }
 
     hueTouchStart(e) {
@@ -80,10 +145,20 @@ export default class Hsl extends React.Component {
     }
 
     render() {
+        const { saturation, lightness } = this.state
         return (
             <div>
                 <div className="Hsl-empty"></div>
                 <canvas className="Hsl-canvas" ref="canvas" height="220" width="270" />
+                <div className="Hsl-main"
+                    style={{ /* 1 to 244; -225 to -31 */
+                        transform: `translate(${1 + saturation * 244}px, ${-225 + lightness * 194}px)`
+                    }}
+                    onTouchStart={this.mainTouchStart}
+                    onTouchMove={this.mainTouchMove}
+                    onTouchEnd={this.mainTouchEnd}
+                    onMouseDown={this.mainTouchStart}
+                ></div>
                 <div className="Hsl-hue-container">
                     <div className="Hsl-hue"
                         style={{

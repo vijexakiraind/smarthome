@@ -28,6 +28,6 @@
   },
   "homepage": "https://github.com/VIJEXA/smarthome#readme",
   "dependencies": {
-    "nodemcu-tool": "2.1.1"
+    "nodemcu-tool": "^3.0.2"
   }
 }
